@@ -10,7 +10,7 @@ require('dotenv').config()  //
 app.use(express.json()); //parses incoming data to req.body
 
 
-app.use("/api/recipe", recipe); //REPLACE THE ENDPOINT WITH SPOONACULAR'S ROUTE
+app.use("/api/v1", recipe); //REPLACE THE ENDPOINT WITH SPOONACULAR'S ROUTE
 
 
 

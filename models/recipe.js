@@ -13,23 +13,7 @@ const RecipeSchema = new mongoose.Schema({
     trim: true,
     maxlength: [20, "name cant be more than 20 char"],
   },
-   img:
-    {
-        data: Buffer,
-        contentType: String
-    },
-  ingredients: { 
-    type: String,
-    required: [true, "must provide a name"],
-    trim: true,
-     },
-
-   steps: {
-    type: String,
-    required: [true, "must provide the steps to make the meal"],
-    trim: true,
-
-  },
+   
    
 });
 
