@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate') %> 
+<h1>This page is for showing one recipe</h1>
+<h1><%= recipe.name%></h1>
+<a href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
+<form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+    <button>Delete Recipe</button>
+</form>
+<footer>
+    
+    <a href="/recipes">All Recipes</a>
+</footer>
