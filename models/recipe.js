@@ -8,12 +8,25 @@ const RecipeSchema = new Schema({
 //     type: String,
 //     required:true   
 //   },
-  name: {
-    type: String,
-    required: [true, "must provide a name of recipe"],
-    trim: true,
-    maxlength: [20, "name cant be more than 20 char"],
-  },
+    name: {
+        type: String,
+        required: [true, "must provide a name of recipe"],
+        trim: true,
+        maxlength: [20, "name cant be more than 20 char"],
+    },
+    image:{
+        type: String,
+    },
+    ingredients:{
+        type: [String]
+    },
+    directions: {
+        type: [String]
+    },
+    descriptions:{
+        type: String
+    }
+
    
    
 });
