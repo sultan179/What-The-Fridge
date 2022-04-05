@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");                               // get mongoose
+const mongoose = require("mongoose");                       
 const Comment = require('./comment');
-const Schema = mongoose.Schema;                                     // for less coding
+const Schema = mongoose.Schema;                     
 
-//API is not considered*** it's just a dummy model........
 const RecipeSchema = new Schema({
 
     name: {
