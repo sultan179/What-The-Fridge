@@ -1,13 +1,9 @@
-const mongoose = require("mongoose");                               // get mongoose
-const Schema = mongoose.Schema;                                     // for less coding
+const mongoose = require("mongoose");                       
+const Comment = require('./comment');
+const Schema = mongoose.Schema;                     
 
-//API is not considered*** it's just a dummy model........
 const RecipeSchema = new Schema({
 
-//   id: {
-//     type: String,
-//     required:true   
-//   },
     name: {
         type: String,
         required: [true, "must provide a name of recipe"],
@@ -25,10 +21,29 @@ const RecipeSchema = new Schema({
     },
     descriptions:{
         type: String
-    }
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    comments:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
+});
 
-   
-   
+//Mongo middleware 
+//We need to delete all the comments when deleting the associated recipe
+RecipeSchema.post('findOneAndDelete', async function (doc){
+    if(doc){
+        await Comment.deleteMany({
+            _id:{
+                $in: doc.comments
+            }
+        })
+    }
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
