@@ -1,23 +1,23 @@
 <% layout('layouts/boilerplate') %> 
-<div class="container">
-    <div class="home-container">
-        <form class="forms">
-          <div class="home-title" style="font-size: 40px">What the Fridge!</div>
-          <div class="form-group">
-            <input
-              class="form-control"
-              id="ingredient"
-              placeholder="Enter ingredients here"
-            />
-            <button id="ingredient-button">+</button>
-          </div>
-          <li id="ingredient-group"></li>
-          <div class="btn">
-            <button type="button" class="home-button">Search Recipe</button>
-          </div>
-
-        </form>
-        <a href="/recipes">All Recipes</a>
+<link rel="stylesheet" href="../../styles/home.css" />
+<div class="container-fluid">
+  <div class="home-container">
+    <form class="forms" method="post" action="/recipes">
+      <div class="home-title h1">What the Fridge!</div>
+      <div class="form-group">
+        <input class="form-control" id="ingredient" placeholder="Enter ingredients here" />
+        <button id="ingredient-button"><i class="fa-solid fa-plus text-dark"></i></button>
       </div>
-    </div>
+      <li id="ingredient-group"></li>
+      <div class="search-btn">
+        <button type="button" class="home-button" onclick="location.href='/recipes';">Search
+          Recipe</button>
+      </div>
+
+    </form>
+    <a href="/recipes">All Recipes</a>
   </div>
+</div>
+  </div>
+
+ 
