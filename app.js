@@ -7,6 +7,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const mongoose = require("mongoose"); 
+const port = process.env.PORT||3000; //get an available port else take 3000
+const connectDB = require("./db/connect"); //connect to mongoDb Atlas
+require('dotenv').config()
 
 //Routes
 const recipesRoutes = require("./routes/recipes"); 
@@ -25,12 +28,24 @@ const ExpressError = require('./utils/ExpressError');
 const app = express(); 
 
 //MongoDB and Mongoose                          
-mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+// mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
+
+//MongoDB Atlas
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
+   
+    app.listen(port, console.log(`server is listenin on port ${port}...`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+start()
 
 //App use
 app.use(express.urlencoded({extended: true}));
@@ -100,6 +115,6 @@ app.use((err, req, res, next) => {
 })
 
 //Easy listening
-app.listen(3000, () => {
-    console.log("Serving on port 3000");
-});
+// app.listen(3000, () => {
+//     console.log("Serving on port 3000");
+// });
