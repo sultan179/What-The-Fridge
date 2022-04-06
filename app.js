@@ -53,13 +53,13 @@ const Comment = require('./models/comment');
 
 const mongoose = require("mongoose");                               // get mongoose
 const res = require("express/lib/response");
-mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+// mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
 
 //Set ejs and path
 app.engine('ejs', ejsMate);
@@ -89,6 +89,11 @@ app.get('/', (req, res) => {
 //About us Page
 app.get('/about_us', (req, res) => {
     res.render('about_us');
+});
+
+
+app.get('/result', (req, res) => {
+    res.render('result');
 });
 
 //Add new Comments
@@ -123,20 +128,19 @@ app.use((err, req, res, next) => {
 })
 
 //Easy listening
-app.listen(3000, () => {
-    console.log("Serving on port 3000");
-});
+// app.listen(3000, () => {
+//     console.log("Serving on port 3000");
+// });
 
 
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
 
-
-// const start = async () => {
-//   try {
-//     await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
    
-//     app.listen(port, console.log(`server is listenin on port ${port}...`));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// start()
+    app.listen(port, console.log(`server is listenin on port ${port}...`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+start()

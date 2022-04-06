@@ -1,0 +1,37 @@
+body {
+    position: relative;
+
+    background: url(../img/bg-result.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.cook-button {
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 70px;
+    padding: 2px;
+    margin-bottom: 8px;
+
+}
