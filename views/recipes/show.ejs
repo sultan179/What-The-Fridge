@@ -1,11 +1,47 @@
 <% layout('layouts/boilerplate') %> 
 <h1>This page is for showing one recipe</h1>
 <h1><%= recipe.name%></h1>
-<a href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
-<form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+<img src="<%= recipe.image %> " alt="">
+<h3> made by<%= recipe.author.username %> </h3>
+
+<% if(currentUser && recipe.author.equals(currentUser._id)) {%> 
+<div>
+    <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
     <button>Delete Recipe</button>
 </form>
+    <a href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
+</div>
+<% } %> 
+<h1>Leave a Comment Below</h1>
+<% if(currentUser){ %> 
+<form action="/recipes/<%= recipe._id %>/comments" method="POST" class="validated-form mb-3" novalidate>
+    <div class="mb-3">
+        <label class="form-label" for="rating">Ratings</label>
+        <input class="form-range" type="range" min="1" max="5" name="comment[rating]" id="rating">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="text">Comments</label>
+        <textarea class="form-control" name="comment[text]", id = 'text', cols='30', rows='3' required></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <button class="btn btn-success">Submit Comment</button>
+</form>
+<% } %> 
+<% for(let comment of recipe.comments) {%> 
+<div class="mb-3">
+    <p>Author: <%= comment.author.username %> </p>
+    <p>Ratings: <%= comment.rating %> </p>
+    <p>Comments: <%= comment.text %> </p>
+    <% if(currentUser && comment.author.equals(currentUser._id)) {%> 
+    <form action="/recipes/<%= recipe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">delete comment</button>
+    </form>
+    <% } %> 
+</div>
+<% } %> 
+
 <footer>
-    
     <a href="/recipes">All Recipes</a>
 </footer>

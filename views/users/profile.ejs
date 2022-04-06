@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+    <h1>Profile Page for <%= user.username %></h1>
+    <div class="row">
+    <%console.log("This is the user's recipe" + user.recipes) %> 
+    <% for(let recipe of user.recipes) {%> 
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" alt="" src="<%=recipe.image%>">
+                <div class="card-body">
+                    <h5 class="card-title"><%= recipe.name %> </h5>
+                    <p class="card-text"><%= recipe.descriptions %> </p>
+                    <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+                </div>
+            </div>
+        </div>
+    <% } %> 
+    </div>
+</div>
