@@ -1,38 +1,50 @@
-//All require
-const express = require("express"); 
+const express = require("express"); //setup a basic express server
+const app = express(); //initialize a variable ,app is an express function with built in methods like app.use() app.get
 const path = require('path');
-const session = require('express-session');
-const flash = require('connect-flash');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const port = process.env.PORT||3000; //get an available port else take 3000
+const recipes = require("./routes/recipes"); //all similar tasks routes should be imported
+const connectDB = require("./db/connect"); //connect to db
+require('dotenv').config()
+
+
+
+//validating data
+const {recipeSchema, commentSchema} = require('./schemas');
+const validateRecipe = (req, res, next) => {
+    const {error} = recipeSchema.validate(req.body);
+    if(error){
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    }
+    else{
+        next();
+    }
+}
+
+const validateComment = (req, res, next) => {
+    const {error} = commentSchema.validate(req.body);
+    if(error){
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    }
+    else{
+        next();
+    }
+}
+
+//method override for form post
 const methodOverride = require('method-override');
-const mongoose = require("mongoose"); 
 
-//Routes
-const recipesRoutes = require("./routes/recipes"); 
-const commentsRoutes = require('./routes/comments');
-const usersRoutes = require("./routes/users");
+//ejs-mate for better merging ejs files
+const ejsMate = require('ejs-mate');
 
-//Models
-const User = require('./models/user');
-
-//Our Own error Handling 
+//Error stuff
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 
 //Morgan middleware good for debugging
 // const morgan = require('morgan');
-const app = express(); 
 
-<<<<<<< HEAD
-//MongoDB and Mongoose                          
-mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
-=======
 
 
 //Models
@@ -48,65 +60,37 @@ const res = require("express/lib/response");
 // db.once("open", () => {
 //     console.log("Database connected");
 // });
->>>>>>> 9ed4418b295ba132a7a56f418c26a2be899c9c91
 
-//App use
-app.use(express.urlencoded({extended: true}));
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')))
-
-//Session
-const sessionConfig = {
-    secret: 'thisshouldbeabettersecret!',
-    resave: false,
-    saveUninitialized: true,
-    cookie:{
-        httpOnly: true,
-        expires: Date.now() + 1000*60*60*24*7,
-        maxAge: 1000*60*60*24*7
-    }
-}
-app.use(session(sessionConfig));
-app.use(flash());
-
-//Passport
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-//Middleware flash
-app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-});
-
-//EJS
-const ejsMate = require('ejs-mate');
+//Set ejs and path
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs'); //get ejs 
 app.set('views', path.join(__dirname, 'views')); //set path
 
-//Routes
-app.use('/recipes', recipesRoutes);
-app.use('/recipes/:id/comments', commentsRoutes);
-app.use('/', usersRoutes);
+//Need to parse req.body to sending info
+app.use(express.urlencoded({extended: true}));
+
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(express.json()); //parses incoming data to req.body
+// app.use("/api/v1", recipe); //REPLACE THE ENDPOINT WITH SPOONACULAR'S ROUTE
+
+//log reuests with morgan good for debugging
+// app.use(morgan('tiny'));
+
+app.use('/recipes', recipes);
 
 //Route path as set to home
 app.get('/', (req, res) => {
     res.render('home');
 });
 
+
 //About us Page
 app.get('/about_us', (req, res) => {
     res.render('about_us');
 });
 
-<<<<<<< HEAD
-=======
 
 app.get('/result', (req, res) => {
     res.render('result');
@@ -131,7 +115,6 @@ app.delete('/recipes/:id/comments/:commentId', catchAsync(async(req,res) => {
     res.redirect(`/recipes/${id}`);
 }));
 
->>>>>>> 9ed4418b295ba132a7a56f418c26a2be899c9c91
 //Error Handling
 app.all('*', (req, res, nexts) => {
     next(new ExpressError('Page not found', 404));
@@ -145,11 +128,6 @@ app.use((err, req, res, next) => {
 })
 
 //Easy listening
-<<<<<<< HEAD
-app.listen(3000, () => {
-    console.log("Serving on port 3000");
-});
-=======
 // app.listen(3000, () => {
 //     console.log("Serving on port 3000");
 // });
@@ -166,4 +144,3 @@ const start = async () => {
   }
 };
 start()
->>>>>>> 9ed4418b295ba132a7a56f418c26a2be899c9c91
