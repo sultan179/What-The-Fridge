@@ -20,16 +20,10 @@ const createRecipe =async (req, res) => {
       console.log(req.body)
       const recipe = await Recipe.create(req.body);
       res.status(201).json({ recipe}); //single recipe is created to the db  (just for testing purpose)
-
     }
     catch(err){
        res.status(400).json({msg:"recipe cannot be created due to an error"})
-
     }
-    
- 
-  
-
 };
 
 const getRecipe= async (req, res )=> {

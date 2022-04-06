@@ -1,118 +1,101 @@
-const express = require("express"); //setup a basic express server
-const app = express(); //initialize a variable ,app is an express function with built in methods like app.use() app.get
+//All require
+const express = require("express"); 
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const methodOverride = require('method-override');
+const mongoose = require("mongoose"); 
 const port = process.env.PORT||3000; //get an available port else take 3000
-const recipe = require("./routes/recipe"); //all similar tasks routes should be imported
-const connectDB = require("./db/connect"); //connect to db
+const connectDB = require("./db/connect"); //connect to mongoDb Atlas
 require('dotenv').config()
 
+//Routes
+const recipesRoutes = require("./routes/recipes"); 
+const commentsRoutes = require('./routes/comments');
+const usersRoutes = require("./routes/users");
 
+//Models
+const User = require('./models/user');
 
-//validating data
-const {recipeSchema} = require('./schemas');
-const validateRecipe = (req, res, next) => {
-    const {error} = recipeSchema.validate(req.body);
-    if(error){
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    }
-    else{
-        next();
-    }
-}
-
-//method override for form post
-const methodOverride = require('method-override');
-
-//ejs-mate for better merging ejs files
-const ejsMate = require('ejs-mate');
-
-//Error stuff
+//Our Own error Handling 
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 
 //Morgan middleware good for debugging
 // const morgan = require('morgan');
+const app = express(); 
 
+//MongoDB and Mongoose                          
+// mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
 
+//MongoDB Atlas
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
+   
+    app.listen(port, console.log(`server is listenin on port ${port}...`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+start()
 
-//Models
-const Recipe = require('./models/recipe');
+//App use
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
 
-const mongoose = require("mongoose");                               // get mongoose
-const res = require("express/lib/response");
-mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+//Session
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        httpOnly: true,
+        expires: Date.now() + 1000*60*60*24*7,
+        maxAge: 1000*60*60*24*7
+    }
+}
+app.use(session(sessionConfig));
+app.use(flash());
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Middleware flash
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 });
 
-//Set ejs and path
+//EJS
+const ejsMate = require('ejs-mate');
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs'); //get ejs 
 app.set('views', path.join(__dirname, 'views')); //set path
 
-//Need to parse req.body to sending info
-app.use(express.urlencoded({extended: true}));
-
-app.use(methodOverride('_method'));
-
-app.use(express.json()); //parses incoming data to req.body
-app.use("/api/v1", recipe); //REPLACE THE ENDPOINT WITH SPOONACULAR'S ROUTE
-
-//log reuests with morgan good for debugging
-// app.use(morgan('tiny'));
+//Routes
+app.use('/recipes', recipesRoutes);
+app.use('/recipes/:id/comments', commentsRoutes);
+app.use('/', usersRoutes);
 
 //Route path as set to home
 app.get('/', (req, res) => {
     res.render('home');
 });
-
-// Show all Recipes in local mongodb
-app.get('/recipes', async (req, res) => {
-    const recipes = await Recipe.find({});
-    res.render('recipes/index', {recipes});
-});
-
-//Get request to show the page of adding the recipe
-app.get('/recipes/new', (req, res) => {
-    res.render('recipes/new');
-});
-
-//Add New Recipe
-app.post('/recipes', validateRecipe, catchAsync(async(req, res, next) =>{
-    const recipe = new Recipe(req.body.recipe);
-    await recipe.save();
-    res.redirect(`/recipes/${recipe._id}`); 
-}));
-
-// Show individual recipe
-app.get('/recipes/:id', catchAsync(async(req, res) => {
-    const recipe = await Recipe.findById(req.params.id);
-    res.render('recipes/show', {recipe});
-}));
-
-//Show Edit Recipes page
-app.get('/recipes/:id/edit', catchAsync(async(req, res) =>{
-    const recipe = await Recipe.findById(req.params.id);
-    res.render('recipes/edit', {recipe});
-}));
-
-//Put Edit page
-app.put('/recipes/:id', validateRecipe, catchAsync(async(req, res) =>{
-    const { id } = req.params;
-    const recipe = await Recipe.findByIdAndUpdate(id, {...req.body.recipe});
-    res.redirect(`/recipes/${recipe._id}`);
-}));
-
-//Delete Recipe
-app.delete('/recipes/:id', catchAsync(async (req,res)=>{
-    const {id} = req.params;
-    await Recipe.findByIdAndDelete(id);
-    res.redirect('/recipes');
-}));
 
 //About us Page
 app.get('/about_us', (req, res) => {
@@ -132,19 +115,6 @@ app.use((err, req, res, next) => {
 })
 
 //Easy listening
-app.listen(3000, () => {
-    console.log("Serving on port 3000");
-});
-
-
-
-// const start = async () => {
-//   try {
-//     await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
-   
-//     app.listen(port, console.log(`server is listenin on port ${port}...`));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// start()
+// app.listen(3000, () => {
+//     console.log("Serving on port 3000");
+// });
