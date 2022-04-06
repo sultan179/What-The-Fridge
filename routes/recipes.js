@@ -1,68 +1,78 @@
-const express = require('express')
+//Recipe route
+const express = require('express');
 const router = express.Router();
-
-const catchAsync = require('../utils/catchAsync');
-const ExpressError = require('../utils/ExpressError');
 
 //Models
 const Recipe = require('../models/recipe');
-const Comment = require('../models/comment');
 
-const {recipeSchema, commentSchema} = require('../schemas');
-const validateRecipe = (req, res, next) => {
-    const {error} = recipeSchema.validate(req.body);
-    if(error){
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    }
-    else{
-        next();
-    }
-}
+//auth middleware
+const {isLoggedIn, isAuthor, validateRecipe} = require('../middleware');
 
-// Show all Recipes in local mongodb
+//Our Own Error Handling 
+const catchAsync = require('../utils/catchAsync');
+
+// Show all Recipes - This will be the results page when searching with ingredients
 router.get('/', async (req, res) => {
     const recipes = await Recipe.find({});
     res.render('recipes/index', {recipes});
 });
 
-//Get request to show the page of adding the recipe
-router.get('/new', (req, res) => {
+//Shows the Add New Recipe Page
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('recipes/new');
 });
 
-//Add New Recipe
-router.post('/', validateRecipe, catchAsync(async(req, res, next) =>{
+//Adds New Recipe
+router.post('/', isLoggedIn, validateRecipe, catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
+    recipe.author = req.user._id;
+    req.user.recipes.push(recipe);
     await recipe.save();
+    await req.user.save();
+    req.flash('success', 'Sucessfully made recipe');
     res.redirect(`/recipes/${recipe._id}`); 
 }));
 
-// Show individual recipe
+// Show individual recipe - This will be the view recipe page
 router.get('/:id', catchAsync(async(req, res) => {
-    const recipe = await Recipe.findById(req.params.id).populate('comments');
+    const recipe = await Recipe.findById(req.params.id).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    if(!recipe){
+        console.log("recipe not found");
+        req.flash('error', 'Recipe does not exist with the specified id');
+        return res.redirect('/recipes');
+    }
     res.render('recipes/show', {recipe});
 }));
 
 //Show Edit Recipes page
-router.get('/:id/edit', catchAsync(async(req, res) =>{
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async(req, res) =>{
     const recipe = await Recipe.findById(req.params.id);
+    if(!recipe){
+        req.flash('error', 'Could not find the recipe');
+        return res.redirect('/recipes');
+    }
     res.render('recipes/edit', {recipe});
 }));
 
-//Put Edit page
-router.put('/:id', validateRecipe, catchAsync(async(req, res) =>{
+//Edits the recipe
+router.put('/:id', isLoggedIn, isAuthor, validateRecipe, catchAsync(async(req, res) =>{
     const { id } = req.params;
     const recipe = await Recipe.findByIdAndUpdate(id, {...req.body.recipe});
+    req.flash('success', 'Sucessfully updated recipe');
     res.redirect(`/recipes/${recipe._id}`);
 }));
 
-//Delete Recipe
-router.delete('/:id', catchAsync(async (req,res)=>{
+//Deletes Recipe
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req,res)=>{
     const {id} = req.params;
     await Recipe.findByIdAndDelete(id);
+    req.flash('success', 'Sucessfully deleted recipe');
     res.redirect('/recipes');
 }));
-
 
 module.exports = router;

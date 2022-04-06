@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;                                     // for less coding
+const Schema = mongoose.Schema;                                   
 
-//API is not considered*** it's just a dummy model........
 const commentSchema = new Schema({
     text: String,
-    rating: Number
+    rating: Number,
+    author:{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }
 });
 
 module.exports = mongoose.model("Comment", commentSchema);
