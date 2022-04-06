@@ -54,7 +54,7 @@ router.get('/signout', (req, res) => {
 
 //Profile route
 router.get('/user', catchAsync(async(req, res) => {
-    const user = await User.findOne(req.user._id).populate('recipes');
+    const user = await User.findById(req.user._id).populate('recipes');
     res.render('users/profile', {user});
 }));
 module.exports = router;
