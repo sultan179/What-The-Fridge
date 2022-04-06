@@ -1,9 +1,14 @@
 const express = require("express"); //setup a basic express server
 const app = express(); //initialize a variable ,app is an express function with built in methods like app.use() app.get
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const methodOverride = require('method-override');
+const mongoose = require("mongoose"); 
 const port = process.env.PORT||3000; //get an available port else take 3000
-const recipes = require("./routes/recipes"); //all similar tasks routes should be imported
-const connectDB = require("./db/connect"); //connect to db
+const connectDB = require("./db/connect"); //connect to mongoDb Atlas
 require('dotenv').config()
 
 
@@ -44,6 +49,27 @@ const ExpressError = require('./utils/ExpressError');
 
 //Morgan middleware good for debugging
 // const morgan = require('morgan');
+//const app = express(); 
+
+//MongoDB and Mongoose                          
+// mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
+
+//MongoDB Atlas
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
+   
+    app.listen(port, console.log(`server is listenin on port ${port}...`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+start()
 
 
 
@@ -131,16 +157,3 @@ app.use((err, req, res, next) => {
 // app.listen(3000, () => {
 //     console.log("Serving on port 3000");
 // });
-
-
-const start = async () => {
-  try {
-    await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
-
-   
-    app.listen(port, console.log(`server is listenin on port ${port}...`));
-  } catch (err) {
-    console.log(err);
-  }
-};
-start()
