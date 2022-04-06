@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+body {
+  position: relative;
+
+  background: url(../img/bg-about.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 65%;
+  min-width: 100%;
+  min-height: 100%;
+}
+.nav {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.nav-item {
+  margin-left: 15px;
+}
+.nav-item > a:hover {
+  color: orange !important;
+}
+.card {
+  display: none;
+}
+
+.container-fluid {
+  width: 90%;
+}
+
+.about-title {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Satisfy", cursive;
+  margin-top: 5%;
+}
+hr {
+  opacity: 1;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 2px solid rgb(255, 255, 255, 1);
+  max-width: 400px;
+}
+
+.about-description {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Sedan";
+  font-size: 30px;
+}
+#LL-desc {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Sedan";
+}
+
+#LR-desc {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Sedan";
+}
+#LR-title {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Satisfy", cursive;
+  text-decoration: underline;
+  margin-top: 5%;
+}
+
+#LL-title {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Satisfy", cursive;
+  text-decoration: underline;
+  margin-top: 5%;
+}
+
+.home-container {
+  position: absolute;
+
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+
+  width: 70%;
+  min-height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+@media only screen and (max-width: 768px) {
+  .about-description {
+    justify-content: start;
+  }
+}
+
+/* references
+https: //stackoverflow.com/questions/2643305/centering-a-background-image-using-css */
