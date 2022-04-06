@@ -10,35 +10,27 @@ const Comment = require('../models/comment');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 
-//Comment data Validation
-const {commentSchema} = require('../schemas');
-const validateComment = (req, res, next) => {
-    const {error} = commentSchema.validate(req.body);
-    if(error){
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    }
-    else{
-        next();
-    }
-}
+const {isLoggedIn, isCommentAuthor, validateComment} = require('../middleware');
 
 //Add new Comments
 // POST /recipes/:id/comments
-router.post('/', validateComment,catchAsync(async(req,res) => {
+router.post('/', isLoggedIn, validateComment, catchAsync(async(req,res) => {
     const recipe = await Recipe.findById(req.params.id);
     const comment = new Comment(req.body.comment);
+    comment.author = req.user._id;
     recipe.comments.push(comment);
     await comment.save();
     await recipe.save();
+    req.flash('success', 'Sucessfully made comment');
     res.redirect(`/recipes/${recipe._id}`);
 }));
 
 //Comment delete
-router.delete('/:commentId', catchAsync(async(req,res) => {
+router.delete('/:commentId', isLoggedIn, isCommentAuthor, catchAsync(async(req,res) => {
     const {id, commentId} = req.params;
     await Recipe.findByIdAndUpdate(id, {$pull: {commnets: commentId}});
     await Comment.findByIdAndDelete(req.params.commentId);
+    req.flash('success', 'Sucessfully deleted comment');
     res.redirect(`/recipes/${id}`);
 }));
 

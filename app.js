@@ -1,24 +1,20 @@
+//All require
 const express = require("express"); 
-const app = express(); 
 const path = require('path');
-const port = process.env.PORT||3000; 
 const session = require('express-session');
-
-const connectDB = require("./db/connect"); 
-require('dotenv').config()
+const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const methodOverride = require('method-override');
+const mongoose = require("mongoose"); 
 
 //Routes
-const recipes = require("./routes/recipes"); 
-const comments = require('./routes/comments');
-const users = require("./routes/users");
+const recipesRoutes = require("./routes/recipes"); 
+const commentsRoutes = require('./routes/comments');
+const usersRoutes = require("./routes/users");
 
 //Models
 const User = require('./models/user');
-
-//method override for form post
-const methodOverride = require('method-override');
 
 //Our Own error Handling 
 const catchAsync = require('./utils/catchAsync');
@@ -26,6 +22,20 @@ const ExpressError = require('./utils/ExpressError');
 
 //Morgan middleware good for debugging
 // const morgan = require('morgan');
+const app = express(); 
+
+//MongoDB and Mongoose                          
+mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+
+//App use
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
 
 //Session
 const sessionConfig = {
@@ -39,43 +49,33 @@ const sessionConfig = {
     }
 }
 app.use(session(sessionConfig));
+app.use(flash());
 
 //Passport
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-//log reuests with morgan good for debugging
-// app.use(morgan('tiny'));
-const mongoose = require("mongoose");                               
-// const res = require("express/lib/response");
-mongoose.connect('mongodb://127.0.0.1:27017/what-the-fridge');
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
+//Middleware flash
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 });
 
-//Set ejs and path
-//ejs-mate for better merging ejs files
+//EJS
 const ejsMate = require('ejs-mate');
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs'); //get ejs 
 app.set('views', path.join(__dirname, 'views')); //set path
 
-//Need to parse req.body to sending info
-app.use(express.urlencoded({extended: true}));
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')))
-// app.use(express.json()); //parses incoming data to req.body
-
 //Routes
-app.use('/recipes', recipes);
-app.use('/recipes/:id/comments', comments);
-app.use('/', users);
+app.use('/recipes', recipesRoutes);
+app.use('/recipes/:id/comments', commentsRoutes);
+app.use('/', usersRoutes);
 
 //Route path as set to home
 app.get('/', (req, res) => {
@@ -103,14 +103,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log("Serving on port 3000");
 });
-
-// const start = async () => {
-//   try {
-//     await connectDB(process.env.MONGO_URI); //connect to database first before starting server,uri is in .env file and await the connection
-   
-//     app.listen(port, console.log(`server is listenin on port ${port}...`));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// start()

@@ -4,9 +4,9 @@
     <div class="col-6 offset-3">
         <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" novalidate class="validated-form">
             <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="recipe[name]"
-                    value="<%=recipe.title %>" required>
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="recipe[name]"
+                    value="<%=recipe.name %>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -21,9 +21,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="recipe[description]"
-                    required><%= recipe.description%></textarea>
+                <label class="form-label" for="descriptions">Description</label>
+                <textarea class="form-control" type="text" id="descriptions" name="recipe[descriptions]"
+                    required><%= recipe.descriptions%></textarea>
                 <div class="valid-feedback">
                     Looks good!
                 </div>

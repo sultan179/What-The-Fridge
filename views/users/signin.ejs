@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
-<h1>Sign up Page</h1>
-<form action="/signup" method="POST" novalidate class="validated-form">
+<h1>Sign In Page</h1>
+<form action="/signin" method="POST" novalidate class="validated-form">
     <div class="mb-3">
         <label class="form-label" for="username">Username</label>
         <input class="form-control" type="text" id="username" name="username" required>
@@ -16,13 +16,6 @@
         </div>
     </div>
     <div class="mb-3">
-        <label class="form-label" for="confirm-password">Confirm Password</label>
-        <input class="form-control" type="password" id="confirm-password" name="confirm-password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <button class="btn btn-success">Sign Up</button>
+        <button class="btn btn-success">Sign In</button>
     </div>
 </form>
