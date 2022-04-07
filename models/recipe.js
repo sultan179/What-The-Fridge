@@ -14,7 +14,7 @@ const RecipeSchema = new Schema({
         type: String,
     },
     ingredients:{
-        type: [String]
+        type: String
     },
     directions: {
         type: [String]
@@ -34,6 +34,8 @@ const RecipeSchema = new Schema({
     ]
 });
 
+RecipeSchema.index({ ingredients: 'text'});
+
 //Mongo middleware 
 //We need to delete all the comments when deleting the associated recipe
 RecipeSchema.post('findOneAndDelete', async function (doc){
@@ -47,3 +49,5 @@ RecipeSchema.post('findOneAndDelete', async function (doc){
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
+
+

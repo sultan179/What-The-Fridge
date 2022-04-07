@@ -12,10 +12,18 @@ const {isLoggedIn, isAuthor, validateRecipe} = require('../middleware');
 const catchAsync = require('../utils/catchAsync');
 
 // Show all Recipes - This will be the results page when searching with ingredients
-router.get('/', async (req, res) => {
-    const recipes = await Recipe.find({});
-    res.render('recipes/index', {recipes});
-});
+router.get('/',catchAsync( async (req, res) => {
+    // const ingredients=req.query.ingredient.replace(","," ")
+    const ingredients = req.query.ingredients;
+    console.log("ingredients",ingredients)
+    const recipes = await Recipe.find(
+            { $text: { $search: ingredients} },
+            { score: { $meta: "textScore" } })
+            .sort({ score: { $meta: "textScore" } }).limit(10);
+    console.log("recipes",recipes,ingredients)
+    // req.flash('success', 'Sucessfully found recipe');
+    res.render('recipes/index', {recipes,ingredients});
+}));
 
 //Shows the Add New Recipe Page
 router.get('/new', isLoggedIn, (req, res) => {
