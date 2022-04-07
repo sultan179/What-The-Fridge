@@ -42,6 +42,7 @@ $("#ingredient-button").on("click", function (e) {
     tag.appendChild(button);
 
     document.getElementById("ingredient-group").appendChild(tag);
+    document.getElementById("ingredient").value=""
   } else if (ingredientList.includes(ingredient)) {
     alert("Please try a different ingredient!");
   }
@@ -56,29 +57,6 @@ $(".home-button").on("click", function (e) {
 
 
 
-//    var element = document.querySelector('a');
-//    console.log("53",ingredientList.toString())
-//   // var url = new URL("/recipes?ingredients=");
-// //  window.onload=()=>{
-//    console.log("56",ingredientList.toString())
-//   //  url.searchParams.append(ingredientList.toString());
-//   element.href+= "ingredients=unsalted butter";
-//   console.log("ingredList",ingredientList.toString())
-// //  }
-//   console.log("61",ingredientList.toString())
-  
-  // makeGetRequest();
-  // window.onload=()=>{
-  //   console.log("list",ingredientList)
-    
-  //  var element = document.querySelector('a[href="http://www.google.com"]');
-  //  element.href = "http://stackoverflow.com";
-  //  console.log("list",ingredientList)
-//  };
-  // document.getElementById('#href-link').href= 'http://localhost:3000/recipes'
-  // =
-  //        '/recipes?ingredients'+=ingredientList.toString()
-
 
   
   //references https://stackoverflow.com/questions/5999118/how-can-i-add-or-update-a-query-string-parameter
@@ -89,16 +67,5 @@ $(".home-button").on("click", function (e) {
 
 })
 
-//   async function makeGetRequest() {
-
-//   let res = await axios.get('http://localhost:3000/recipes/',{
-//     params:{
-//       ingredient:ingredientList.toString()
-//     }
-//   });
-
-//   let data = res.data;
-//   console.log("data",data);
-// }
 
 
