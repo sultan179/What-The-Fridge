@@ -4,6 +4,7 @@ const router = express.Router();
 
 //Models
 const Recipe = require('../models/recipe');
+const User = require('../models/user');
 
 //auth middleware
 const {isLoggedIn, isAuthor, validateRecipe} = require('../middleware');
@@ -26,7 +27,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 router.post('/', isLoggedIn, validateRecipe, catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
     recipe.author = req.user._id;
-    req.user.recipes.push(recipe);
+    req.user.savedRecipes.push(recipe);
     await recipe.save();
     await req.user.save();
     req.flash('success', 'Sucessfully made recipe');
@@ -52,17 +53,24 @@ router.get('/:id', catchAsync(async(req, res) => {
 //Route for sending rating to recipe
 router.post('/:id', catchAsync(async(req, res) => {
     const {rating} = req.body.recipe;
-    console.log(rating);
+    // console.log(rating);
     const recipe = await Recipe.findById(req.params.id);
-    console.log(recipe);
+    // console.log(recipe);
     recipe.ratings.push(rating);
-    console.log(recipe);
+    // console.log(recipe);
     var total = 0;
     for (let rating of recipe.ratings){
         total += rating;
     }
     recipe.averageRating = Math.floor(total/recipe.ratings.length);
     await recipe.save();
+    res.render('recipes/show', {recipe});
+}));
+
+router.post('/:id/saved', catchAsync(async(req, res) => {
+    const recipe = await Recipe.findById(req.params.id);
+    req.user.savedRecipes.push(recipe);
+    await req.user.save();
     res.render('recipes/show', {recipe});
 }));
 

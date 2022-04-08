@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" type="text/css" href="/styles/starability.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/heart.css"/>
 
 <h1>This page is for showing one recipe</h1>
 
@@ -76,9 +77,22 @@ data-content-id="popover-27" >
     </div>
 </div> -->
 
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" style="color: red;">
-    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-</svg>
+<!-- HEARTS -->
+    <form action="/recipes/<%=recipe._id%>/saved" method="post">
+        <button class="btn opacity-0"><i class="fa-regular fa-heart" id="heart"></i></button>
+    </form>
+  
+
+
+
+
+
+
+
+
+
+
+
 
 <% if(currentUser && recipe.author.equals(currentUser._id)) {%> 
 <div>
@@ -116,3 +130,5 @@ data-content-id="popover-27" >
 <footer>
     <a href="/recipes">All Recipes</a>
 </footer>
+
+<script src="/js/heart.js"></script>

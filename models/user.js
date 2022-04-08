@@ -5,7 +5,13 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
-    recipes:[
+    ownRecipes:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Recipe'
+        }
+    ],
+    savedRecipes:[
         {
             type: Schema.Types.ObjectId,
             ref: 'Recipe'
