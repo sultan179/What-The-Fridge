@@ -22,6 +22,9 @@ const RecipeSchema = new Schema({
     descriptions:{
         type: String
     },
+    ratings:{
+        type: [Number]
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -45,5 +48,14 @@ RecipeSchema.post('findOneAndDelete', async function (doc){
         })
     }
 });
+
+//Mongoose virtuals
+// RecipeSchema.virtual('averageRating').get(function(){
+//     var total = 0;
+//     for (let rating of this.ratings){
+//         total += rating;
+//     }
+//     return total/this.ratings.length;
+// });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
