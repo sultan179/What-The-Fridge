@@ -25,7 +25,7 @@ router.get('/results',catchAsync( async (req, res) => {
 
   
     const ingredients = req.query.ingredients;
-    console.log("ingredients",ingredients)
+    // console.log("ingredients",ingredients)
     const recipes = await Recipe.find(
             { $text: { $search: ingredients} },
             { score: { $meta: "textScore" } })

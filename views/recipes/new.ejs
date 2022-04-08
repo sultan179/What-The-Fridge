@@ -1,20 +1,10 @@
 <% layout('layouts/boilerplate')%>
-<style>
-    body {
-    position: relative;
+<link rel="stylesheet" href="../../styles/home.css" />
 
-    background: url(../img/bg-home.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    min-width: 100%;
-    min-height: 100%;
-   
-</style>
 <div class="row text-white">
     <h1 class="text-center">New recipe</h1>
     <div class="col-6 offset-3">
-        <form action="/recipes" method="POST" novalidate class="validated-form">
+        <form action="/recipes" method="POST"  novalidate class="validated-form" onsubmit="submitForm()">
             <div class="mb-3">
                 <label class="form-label" for="name">title</label>
                 <input class="form-control" type="text" id="name" name="recipe[name]" required>
@@ -31,10 +21,11 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="ingredients">ingredients</label>
-                <input class="form-control" id="ingredients" placeholder="Enter ingredients here" name="recipe[ingredients]" required />
-                <div class="valid-feedback">
-                    Looks good!
+                <div class="form-group">
+                    <input class="form-control" id="ingredient" placeholder="Enter ingredients here"  name="recipe[ingredients]" />
+                    <button id="ingredient-button" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                 </div>
+                <li id="ingredient-group"></li>
             </div>
             
 
@@ -47,9 +38,10 @@
                 </div>
             </div>
             <div class="mb-3 text-center">
-                <button class="btn btn-success">Add recipe</button>
+                <button type="submit" class="btn btn-success" >Add recipe</button>
             </div>
         </form>
         <a href="/recipes">All recipes</a>
     </div>
 </div>
+<script src="../../public/js/home.js"></script>

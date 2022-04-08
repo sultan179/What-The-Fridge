@@ -17,6 +17,7 @@ body {
     background-position: center center;
     min-width: 100%;
     min-height: 100%;
+
 }
 
 .container-fluid {
@@ -26,6 +27,9 @@ body {
 
 .nav-item>a:hover {
     color: orange !important;
+}
+.ingredient{
+    width: 200px;
 }
 
 .home-title {
