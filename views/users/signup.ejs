@@ -1,28 +1,61 @@
 <% layout('layouts/boilerplate')%>
-<h1>Sign up Page</h1>
-<form action="/signup" method="POST" novalidate class="validated-form">
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
+<link rel="stylesheet" href="../../styles/signup.css" />
+<link rel="stylesheet" href="../../styles/signin.css" />
+<div class="container-fluid">
+    <div class="signup-container">
+      <div class="login-items">
+        <h1 class="login-title">Sign Up</h1>
+        <form action="/signup" method="POST" novalidate class="validated-form">
+            <div class="camera-icon">
+                <img
+                  id="profile-pic"
+                  class="new-profile-pic"
+                  src="../img/profile.png"
+                  alt=""
+                />
+              </div>
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+                <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success" id="login-button">Sign Up</button>
+            </div>
+            <div class="sign-up mt-4" style="font-size: 22px">
+                <h5>Already have an account? <a href="/signin" style="color: orange">Sign In</span></a>
+            </div>
         </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="confirmPassword">Confirm Password</label>
-        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <button class="btn btn-success">Sign Up</button>
-    </div>
+    <i
+    class="fa-solid fa-plus"
+    id="add-icon"
+    accept="image/png, image/gif, image/jpeg"
+  ></i>
+
+  <form>
+    <input
+      type="file"
+      class="form-group-image"
+      id="change-pic"
+      onchange="loadFile(event)"
+    />
+  </form>
+</div>
 </form>

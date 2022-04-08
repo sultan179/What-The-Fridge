@@ -1,0 +1,78 @@
+.signup-container {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-width: 500px;
+  height: 650px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Satisfy", cursive;
+  background: rgb(0, 0, 0, 0.8);
+  border: 3px solid #fdfdfd;
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+
+.camera-icon {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  border-radius: 50%;
+}
+.default-profile-pic {
+  width: 80px;
+  object-fit: contain;
+}
+.new-profile-pic {
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.container-fluid {
+  width: 90%;
+}
+
+#add-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(85%, -285%);
+
+  text-align: center;
+  padding-top: 6px;
+  padding-left: 2px;
+
+  color: black;
+  background-color: white;
+
+  font-size: 30px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.form-group-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -149%);
+
+  opacity: 0;
+
+  width: 150px;
+  height: 150px;
+}
