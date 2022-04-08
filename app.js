@@ -95,9 +95,9 @@ app.get('/about_us', (req, res) => {
     res.render('about_us');
 });
 
-app.get('/result', (req, res) => {
-    res.render('result');
-});
+// app.get('/result', (req, res) => {
+//     res.render('result');
+// });
 
 //Error Handling
 app.all('*', (req, res, nexts) => {

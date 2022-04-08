@@ -40,7 +40,7 @@ router.get('/signin', (req, res) =>{
 
 router.post('/signin', passport.authenticate('local', {failureFlash: true, failureRedirect: '/signin'}), (req, res) =>{
     req.flash('success', 'welcome back');
-    const redirectUrl = req.session.returnTo || '/recipes';
+    const redirectUrl = req.session.returnTo || '/';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 });

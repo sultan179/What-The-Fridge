@@ -53,7 +53,10 @@ $(".home-button").on("click", function (e) {
   if (ingredientList.length!=0){
    var searchParams = new URLSearchParams(window.location.search)
     searchParams.set("ingredients", ingredientList.toString());
-    window.location =window.location.href + 'recipes'+'?' + searchParams.toString();}
+    window.location =window.location.href + 'recipes/results'+'?' + searchParams.toString();}
+  else{
+    alert("Please add ingredients for recipes")
+  }
 
 
 
