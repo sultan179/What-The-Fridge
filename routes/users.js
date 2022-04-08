@@ -18,14 +18,21 @@ router.get('/signup', (req, res) =>{
 
 router.post('/signup', catchAsync(async(req, res, next) => {
     try{
-        const {username, password} = req.body;
-        const user = new User({username});
-        const registeredUser = await User.register(user, password);
-        req.login(registeredUser, err => {
-            if(err) return next(err);
-            req.flash('success', 'Welcome to What the Fridge!');
-            res.redirect('/');
-        })
+        const {username, password, confirmPassword} = req.body;
+        if(password !== confirmPassword){
+            req.flash('error', 'Passowrd does not match!');
+            return res.redirect('signup');
+        }
+        else{
+            const user = new User({username});
+            const registeredUser = await User.register(user, password);
+            req.login(registeredUser, err => {
+                if(err) return next(err);
+                req.flash('success', 'Welcome to What the Fridge!');
+                res.redirect('/');
+            })
+        }
+        
     }
     catch(e){
         req.flash('error', e.message);
