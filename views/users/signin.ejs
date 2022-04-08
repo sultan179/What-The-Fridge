@@ -1,21 +1,42 @@
 <% layout('layouts/boilerplate')%>
-<h1>Sign In Page</h1>
-<form action="/signin" method="POST" novalidate class="validated-form">
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
+<link rel="stylesheet" href="../../styles/signin.css" />
+<div class="container-fluid">
+  <div class="login-container">
+    <div class="login-items">
+      <div class="login-title mb-4" style="font-size: 45px">Sign In</div>
+      <form action="/signin" method="POST" novalidate class="validated-form">
+            <div class="mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input
+                class="form-control"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+                required
+                />
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input
+                class="form-control"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+                />
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success" id="login-button">Sign In</button>
+            </div>
+
+            <div class="sign-up mt-4" style="font-size: 22px">
+                <h5>New user? <a href="/signup" style="color: orange">SignUp</span></a>
+              </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <button class="btn btn-success">Sign In</button>
-    </div>
+  </div>
+</div>
 </form>
