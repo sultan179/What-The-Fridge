@@ -92,7 +92,7 @@ app.get('/', (req, res) => {
 
 //About us Page
 app.get('/about_us', (req, res) => {
-    res.render('about_us');
+    res.render('about_us',{title:"about us"});
 });
 
 //Error Handling

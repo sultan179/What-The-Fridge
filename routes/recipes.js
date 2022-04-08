@@ -14,7 +14,7 @@ const catchAsync = require('../utils/catchAsync');
 
 router.get('/', async (req, res,next) => {
    
-   res.render('home');
+   res.render('home',{title:'Homepage'});
    next()
 });
 
