@@ -95,10 +95,6 @@ app.get('/about_us', (req, res) => {
     res.render('about_us');
 });
 
-// app.get('/result', (req, res) => {
-//     res.render('result');
-// });
-
 //Error Handling
 app.all('*', (req, res, nexts) => {
     next(new ExpressError('Page not found', 404));

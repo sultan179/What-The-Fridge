@@ -67,6 +67,23 @@ router.get('/:id', catchAsync(async(req, res) => {
     res.render('recipes/show', {recipe});
 }));
 
+//Route for sending rating to recipe
+router.post('/:id', catchAsync(async(req, res) => {
+    const {rating} = req.body.recipe;
+    console.log(rating);
+    const recipe = await Recipe.findById(req.params.id);
+    console.log(recipe);
+    recipe.ratings.push(rating);
+    console.log(recipe);
+    var total = 0;
+    for (let rating of recipe.ratings){
+        total += rating;
+    }
+    recipe.averageRating = Math.floor(total/recipe.ratings.length);
+    await recipe.save();
+    res.render('recipes/show', {recipe});
+}));
+
 //Show Edit Recipes page
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async(req, res) =>{
     const recipe = await Recipe.findById(req.params.id);
