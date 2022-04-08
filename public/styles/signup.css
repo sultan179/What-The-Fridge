@@ -31,10 +31,6 @@
   align-self: center;
   border-radius: 50%;
 }
-.default-profile-pic {
-  width: 80px;
-  object-fit: contain;
-}
 .new-profile-pic {
   width: 150px;
   object-fit: cover;
