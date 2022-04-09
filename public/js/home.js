@@ -60,7 +60,7 @@ function ingred(){
 
 
 $(".home-button").on("click", function (e) {
-  
+  console.log("63",ingredientList)
   if (ingredientList.length!=0){
    var searchParams = new URLSearchParams(window.location.search)
     searchParams.set("ingredients", ingredientList.toString());
@@ -84,13 +84,16 @@ $(".ingredient-exit").on("click", function (e) {
       e.preventDefault();
 
       /** Remove item from HTML */
-      document.getElementById("ingredient-" + ingredient).remove();
+      const val=$(this).parent('div').nodeValue
+      console.log("val",val)
 
       /** Remove Item from Ingredient List */
-      var index = ingredientList.indexOf(ingredient);
+      var index = ingredientList.indexOf(val);
       if (index !== -1) {
         ingredientList.splice(index, 1);
       }
+      console.log("list",ingredientList)
+      $(this).parent('div').remove();
     })
 
 
