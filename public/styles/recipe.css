@@ -139,9 +139,7 @@ hr {
     margin-top: 0;
     border-radius: 0;
     background-size: auto 100%;
-    background-position: 0px 0px;
-    background-size: 33% auto;
-    background-repeat: repeat-y;
+    background-position: left center;
     background-attachment: fixed;
 
     padding: 2rem;
