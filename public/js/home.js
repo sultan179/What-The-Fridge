@@ -65,10 +65,12 @@ $(".home-button").on("click", function (e) {
 
 
 function submitForm(){
-  console.log(ingredientList.toString())
-   document.getElementById("ingredient").value=ingredientList.toString()
-   console.log(document.getElementById("ingredient").value)
-  //  $("#myform").submit(); 
+  
+   document.getElementById("ingredient").value=ingredientList.toString();
+
+
+   
+  
 }
 
 
