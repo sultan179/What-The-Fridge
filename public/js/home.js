@@ -43,6 +43,8 @@ $("#ingredient-button").on("click", function (e) {
 
     document.getElementById("ingredient-group").appendChild(tag);
     document.getElementById("ingredient").value=""
+   
+
   } else if (ingredientList.includes(ingredient)) {
     alert("Please try a different ingredient!");
   }
@@ -50,15 +52,26 @@ $("#ingredient-button").on("click", function (e) {
 });
 
 $(".home-button").on("click", function (e) {
+  
   if (ingredientList.length!=0){
    var searchParams = new URLSearchParams(window.location.search)
     searchParams.set("ingredients", ingredientList.toString());
     window.location =window.location.href + 'recipes/results'+'?' + searchParams.toString();}
   else{
     alert("Please add ingredients for recipes")
-  }
+  }})
 
 
+
+
+function submitForm(){
+  
+   document.getElementById("ingredient").value=ingredientList.toString();
+
+
+   
+  
+}
 
 
   
@@ -67,8 +80,6 @@ $(".home-button").on("click", function (e) {
 
 
 
-
-})
 
 
 

@@ -15,7 +15,7 @@ const catchAsync = require('../utils/catchAsync');
 
 router.get('/', async (req, res,next) => {
    
-   res.render('home');
+   res.render('home',{title:'Homepage'});
    next()
 });
 
@@ -26,7 +26,7 @@ router.get('/results',catchAsync( async (req, res) => {
 
   
     const ingredients = req.query.ingredients;
-    console.log("ingredients",ingredients)
+    // console.log("ingredients",ingredients)
     const recipes = await Recipe.find(
             { $text: { $search: ingredients} },
             { score: { $meta: "textScore" } })
@@ -42,10 +42,13 @@ router.get('/new', isLoggedIn, (req, res) => {
 });
 
 //Adds New Recipe
-router.post('/', isLoggedIn, validateRecipe, catchAsync(async(req, res, next) =>{
+router.post('/', isLoggedIn,catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
     recipe.author = req.user._id;
     req.user.savedRecipes.push(recipe);
+    console.log("directions",recipe.directions)
+    
+    // req.user.recipes.push(recipe);
     await recipe.save();
     await req.user.save();
     req.flash('success', 'Sucessfully made recipe');

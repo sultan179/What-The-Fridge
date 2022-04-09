@@ -56,6 +56,7 @@ const sessionConfig = {
         maxAge: 1000*60*60*24*7
     }
 }
+//Date.now() + 10000000*60*60*24*7
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -92,7 +93,7 @@ app.get('/', (req, res) => {
 
 //About us Page
 app.get('/about_us', (req, res) => {
-    res.render('about_us');
+    res.render('about_us',{title:"about us"});
 });
 
 //Error Handling
