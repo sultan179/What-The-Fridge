@@ -4,8 +4,15 @@ const ingredientList = [];
 
 $("#ingredient-button").on("click", function (e) {
   e.preventDefault();
+  ingred()
 
-  /** Get the input value */
+
+  
+  
+});
+
+function ingred(){
+    /** Get the input value */
   const ingredient = document.getElementById("ingredient").value;
 
   if (ingredient != "" && !ingredientList.includes(ingredient)) {
@@ -48,8 +55,9 @@ $("#ingredient-button").on("click", function (e) {
   } else if (ingredientList.includes(ingredient)) {
     alert("Please try a different ingredient!");
   }
-  
-});
+}
+
+
 
 $(".home-button").on("click", function (e) {
   
@@ -72,6 +80,18 @@ function submitForm(){
    
   
 }
+$(".ingredient-exit").on("click", function (e) {
+      e.preventDefault();
+
+      /** Remove item from HTML */
+      document.getElementById("ingredient-" + ingredient).remove();
+
+      /** Remove Item from Ingredient List */
+      var index = ingredientList.indexOf(ingredient);
+      if (index !== -1) {
+        ingredientList.splice(index, 1);
+      }
+    })
 
 
   
