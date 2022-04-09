@@ -49,18 +49,14 @@
     accept="image/png, image/gif, image/jpeg"
   ></i>
 
-<div id="form-group-image">
     <button
     type="button"
     id="change-pic"
-    onchange="loadFile(event)"
-    class="btn btn-primary"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
     title="Change Profile Pic"
   >
   </button>
-</div>
 
 <div
   class="modal fade"
@@ -72,17 +68,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-dark" id="exampleModalLabel">Your Rating</h5>
+        <h5 class="modal-title text-dark" id="exampleModalLabel">Image URL</h5>
         <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
         ></button>
       </div>
       <div class="modal-body">
+        <form>
+          <input class="form-control" id="image-url" placeholder="Image URL Here" />
+          <button type="button" class="btn mt-3 p-1 text-light" data-bs-dismiss="modal" style="background-color: orange; border: none;" onclick="loadFile(event)">Enter Image</button>
+        </form>
       </div>
     </div>
   </div>
 </div>
+<script src="/js/signup.js"></script>
 </form>
