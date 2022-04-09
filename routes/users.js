@@ -13,7 +13,7 @@ const catchAsync = require('../utils/catchAsync');
 
 //Signup route
 router.get('/signup', (req, res) =>{
-    res.render('users/signup'); 
+    res.render('users/signup',{title:"signup"}); 
 });
 
 router.post('/signup', catchAsync(async(req, res, next) => {
@@ -42,7 +42,7 @@ router.post('/signup', catchAsync(async(req, res, next) => {
 
 //Signin route
 router.get('/signin', (req, res) =>{
-    res.render('users/signin'); 
+    res.render('users/signin',{title:"sign in"}); 
 });
 
 router.post('/signin', passport.authenticate('local', {failureFlash: true, failureRedirect: '/signin'}), (req, res) =>{
@@ -61,7 +61,7 @@ router.get('/signout', (req, res) => {
 
 //Profile route
 router.get('/user', catchAsync(async(req, res) => {
-    const user = await User.findById(req.user._id).populate('ownRecipes').populate('savedRecipes');
-    res.render('users/profile', {user});
+     const user = await User.findById(req.user._id).populate('ownRecipes').populate('savedRecipes');
+    res.render('users/profile', {user,title:'profile'});
 }));
 module.exports = router;
