@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&display=swap");
 
-
+main.container{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+}
 body {
     position: relative;
   
@@ -12,7 +17,7 @@ body {
     min-width: 100%;
     min-height: 100%;
   }
-  .container {
+  .recipe-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -21,19 +26,20 @@ body {
     height: 100;
   }
   #body-picture {
-    max-height: 300px;
+    /* max-height: 300px; */
     background: url(../img/bg-profile.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: local;
+    z-index: 51;
   }
-  #body-description {
-    /* background: url(../img/bg-result.jpg); */
+  /* #body-description {
+    /* background: url(../img/bg-result.jpg);
     background-size: cover;
     background-repeat: repeat-y;
-    background-position: center center;
-  }
+    background-position: center center; 
+  } */
   
   
 
@@ -41,8 +47,19 @@ body {
       margin: 2%;
   }
 
+  #recipe-img{
+
+    height: 250px;
+    object-fit: cover;
+
+  }
+
   .btn{
     background-color: #F49338;
+  }
+
+  h1{
+    color: #FDFDFD;
   }
 
   
@@ -50,6 +67,7 @@ body {
   #profile{
 
     position: relative;
+    color: #FDFDFD;
     background: #362c2c9c;
     background-blend-mode: hard-light;
     border: 3px solid #FDFDFD;
@@ -86,25 +104,31 @@ body {
   /* Small devices (tablets, 768px and up) */
   @media (min-width: 768px) {
     #body-picture {
-      max-height: 100vh;
+      max-height: none;
       background: url(../img/bg-profile.jpeg);
       background-size: auto 100%;
       background-position: center left;
       background-attachment: fixed;
+
     }
 
     #profile {
         position: fixed;
-        left: 0;
-        top: 4rem;
+        left: 1.8%;
+        top: 8rem;
         background: #362c2c9c;
         background-blend-mode: hard-light;
         border: 3px solid #FDFDFD;
         box-sizing: border-box;
         border-radius: 50px;
         max-width: 30%;
+        margin: 0;
         
       }
+
+    #body-description {
+        min-height: 100vh;
+    } 
 
     
   }

@@ -3,9 +3,10 @@
 <div class="recipe-container h-100">
     
     
-    <div class="row grid-row h-100" style="width: 100%">
-      <div class="col-md-4 h-100" id="body-picture">
-        <div id="profile" class="card w-30 sticky-top">
+    <div class="row grid-row" style="width: 100%">
+      <div class="col-md-4" id="body-picture">
+        <div class="row">
+        <div id="profile" class="col-4 card sticky-top">
             <img  id ="profile-pic" class="card-img-top" src="../../img/profile-pic.jpg" alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title"><%= user.username %></h4>
@@ -13,17 +14,18 @@
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
             </div>
           </div>
+        </div>
       </div>
 
       
-      <div class="col-md-8 h-100" id="body-description">
+      <div class="col-md-8" id="body-description">
         
             <div class="row">
                 <h1>Own Recipe</h1>
                 <% for(let recipe of user.ownRecipes) {%> 
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card rounded-10">
-                            <img class="card-img-top" alt="" src="<%=recipe.image%>">
+                            <img class="card-img-top" id = "recipe-img" alt="" src="<%=recipe.image%>" >
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
                             
                             
@@ -72,7 +74,7 @@
                 <% for(let recipe of user.savedRecipes) {%> 
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card rounded-10">
-                            <img class="card-img-top" alt="" src="<%=recipe.image%>">
+                            <img class="card-img-top"  id = "recipe-img" alt="" src="<%=recipe.image%>">
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
                             
                             
