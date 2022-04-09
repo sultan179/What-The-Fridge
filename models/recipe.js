@@ -14,10 +14,13 @@ const RecipeSchema = new Schema({
         type: String,
     },
     ingredients:{
-        type: String
+        type: String,
+        required: [true, "must provide ingredients"],
     },
     directions: {
-        type: [String]
+        type:[String],
+        required: [true, "must provide directions"]
+
     },
     descriptions:{
         type: String
