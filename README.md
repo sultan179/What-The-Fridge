@@ -1,6 +1,6 @@
-# What The Fridge
+# What The Fridge!
 
-![Project Image](project-image-url)
+![Project Image](./public/img/image.png);
 
 ---
 
@@ -79,7 +79,10 @@ SOFTWARE.
 
 ## Contributers
 
-- 
+- Sultan Arafat
+- Matthew Forman
+- Jin Sato
+- Will Kerr
 
 [Back To The Top](#read-me-template)
 
