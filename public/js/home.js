@@ -87,6 +87,10 @@ $(".home-button").on("click", function (e) {
 
 
 function submitForm(){
+  validate()
+   
+
+  
   
    document.getElementById("ingredient").value=ingredientList.toString();
 
@@ -110,6 +114,26 @@ $(".ingredient-exit").on("click", function (e) {
       console.log("list",ingredientList)
       $(this).parent('div').remove();
     })
+
+
+    function validate(){
+       if(document.getElementById("name").value===''){
+      alert("please enter a title")
+      return
+    }
+    if(document.getElementById("image").value===''){
+      alert("please upload an url for image")
+      return
+    }
+    if (ingredientList.length===0){
+      alert("please enter ingredients")
+      return
+    }
+     if(!document.getElementById("newRow").hasChildNodes()){
+      alert("please write steps")
+      return
+    }
+    }
 
 
   
