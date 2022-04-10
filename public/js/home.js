@@ -1,6 +1,20 @@
-
-
 const ingredientList = [];
+
+
+// window.onload = function(e){ 
+
+// if (document.querySelectorAll("ingredient-tag")==='undefined'){
+//   ingredientList = [];
+
+// }
+// else{
+//   console.log("7",document.getElementsByClassName("ingredient-tag").value)
+//   const rec_ingredients=document.querySelectorAll("ingredient-tag").value
+//   ingredientList.push(...rec_ingredients)
+//   console.log("9",ingredientList)
+
+// }
+// }
 
 $("#ingredient-button").on("click", function (e) {
   e.preventDefault();
@@ -86,6 +100,7 @@ $(".ingredient-exit").on("click", function (e) {
       /** Remove item from HTML */
       const val=$(this).parent('div').nodeValue
       console.log("val",val)
+      console.log("ingredients",ingredientList)
 
       /** Remove Item from Ingredient List */
       var index = ingredientList.indexOf(val);
