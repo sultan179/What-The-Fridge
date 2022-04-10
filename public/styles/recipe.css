@@ -139,7 +139,7 @@ hr {
     margin-top: 0;
     border-radius: 0;
     background-size: auto 100%;
-    background-position: left center;
+    background-position: left -200px top;
     background-attachment: fixed;
 
     padding: 2rem;
