@@ -31,8 +31,7 @@ router.post('/signup', catchAsync(async(req, res, next) => {
                 req.flash('success', 'Welcome to What the Fridge!');
                 res.redirect('/');
             })
-        }
-        
+        } 
     }
     catch(e){
         req.flash('error', e.message);
