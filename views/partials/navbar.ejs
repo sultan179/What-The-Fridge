@@ -1,80 +1,90 @@
 <nav
-      class="navbar sticky-top navbar-expand-lg navbar-dark"
-      style="background-color: black; z-index: 999"
+  class="navbar sticky-top navbar-expand-lg navbar-dark"
+  style="background-color: black; z-index: 999"
+>
+  <div class="container-fluid">
+    <a
+      class="navbar-brand text-white"
+      href="#"
+      style="font-family: 'Satisfy', cursive; font-size: 28px"
+      >What The Fridge!</a
     >
-      <div class="container-fluid">
-        <a
-          class="navbar-brand text-white"
-          href="#"
-          style="font-family: 'Satisfy', cursive; font-size: 28px"
-          >What The Fridge</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a
-                    class="nav-link active items text-white"
-                    aria-current="page"
-                    href="/"
-                    >Home</a
-                >
-            </li>
-            <li class="nav-item">
-                <a
-                    class="nav-link active items text-white"
-                    aria-current="page"
-                    href="/about_us"
-                    >About Us</a
-                >
-            </li>
-          </ul>
-          <ul class="d-flex navbar-nav mb-2 mb-lg-0">
-            <% if(!currentUser) { %> 
-                <li class="nav-item">
-                    <a
-                        class="nav-link active items text-white"
-                        aria-current="page"
-                        href="/signup"
-                        >Sign up</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="nav-link active items text-white"
-                        aria-current="page"
-                        href="/signin"
-                        >Sign in</a
-                    >
-                </li>
-            <% } else{ %> 
-               
-                <li class="nav-item">
-                  <a class="nav-link active items text-white" aria-current="page" href="/recipes/new">Create Recipe</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active items text-white" aria-current="page" href="/user">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a
-                    class="nav-link active items text-white"
-                    aria-current="page"
-                    href="/signout"
-                    >Sign Out</a
-                    >
-                </li>
-            <% } %> 
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/about_us"
+            >About Us</a
+          >
+        </li>
+      </ul>
+      <ul class="d-flex navbar-nav mb-2 mb-lg-0">
+        <% if(!currentUser) { %>
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/signup"
+            >Sign up</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/signin"
+            >Sign in</a
+          >
+        </li>
+        <% } else{ %>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/recipes/new"
+            >Create Recipe</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/user"
+            >Profile</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active items text-white"
+            aria-current="page"
+            href="/signout"
+            >Sign Out</a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
