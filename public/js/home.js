@@ -70,7 +70,7 @@ function ingred(){
 
 
 $(".home-button").on("click", function (e) {
-  console.log("63",ingredientList)
+//   console.log("63",ingredientList)
   if (ingredientList.length!=0){
    var searchParams = new URLSearchParams(window.location.search)
     searchParams.set("ingredients", ingredientList.toString());

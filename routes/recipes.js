@@ -46,7 +46,7 @@ router.post('/', isLoggedIn,validateRecipe,catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
     recipe.author = req.user._id;
     req.user.ownRecipes.push(recipe)
-    console.log("directions",recipe.directions)
+    // console.log("directions",recipe.directions)
     await recipe.save();
     await req.user.save();
     req.flash('success', 'Sucessfully made recipe');
@@ -73,7 +73,12 @@ router.get('/:id', catchAsync(async(req, res) => {
 router.post('/:id', catchAsync(async(req, res) => {
     const {rating} = req.body.recipe;
     // console.log(rating);
-    const recipe = await Recipe.findById(req.params.id);
+    const recipe = await Recipe.findById(req.params.id).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
     // console.log(recipe);
     recipe.ratings.push(rating);
     // console.log(recipe);
@@ -86,9 +91,28 @@ router.post('/:id', catchAsync(async(req, res) => {
     res.render('recipes/show', {recipe});
 }));
 
+//Route for saving Recipe
 router.post('/:id/saved', catchAsync(async(req, res) => {
-    const recipe = await Recipe.findById(req.params.id);
+    const recipe = await Recipe.findById(req.params.id).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
     req.user.savedRecipes.push(recipe);
+    await req.user.save();
+    res.render('recipes/show', {recipe});
+}));
+
+//Route for unsaving the Recipe
+router.post('/:id/unsave', catchAsync(async(req, res) => {
+    const recipe = await Recipe.findById(req.params.id).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    req.user.savedRecipes.pull(recipe);
     await req.user.save();
     res.render('recipes/show', {recipe});
 }));

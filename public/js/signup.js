@@ -1,7 +1,7 @@
 var loadFile = function (event) {
   var image = document.getElementById("profile-pic");
   var url = document.getElementById("image-url").value;
-  console.log(url);
+//   console.log(url);
   if (isImgLink(url)) {
     image.src = url;
     image.setAttribute("class", "new-profile-pic");

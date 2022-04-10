@@ -28,6 +28,9 @@ const RecipeSchema = new Schema({
     ratings:{
         type: [Number]
     },
+    averageRating:{
+        type: Number
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
