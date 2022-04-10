@@ -4,9 +4,9 @@
 <div class="row text-white d-flex justify-content-center">
     <h1 class="text-center">New recipe</h1>
     <div class="col-6 ">
-        <form action="/recipes" method="POST"  novalidate class="validated-form" onsubmit="submitForm()">
+        <form action="/recipes" method="POST" onsubmit="submitForm()">
             <div class="mb-3">
-                <label class="form-label" for="name">title</label>
+                <label class="form-label" for="name">Title</label>
                 <input class="form-control" type="text" id="name" name="recipe[name]" required>
                 <div class="valid-feedback">
                     Looks good!
@@ -21,9 +21,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="ingredients">ingredients</label>
+                <label class="form-label" for="ingredients">Ingredients</label>
                 <div class="form-group">
-                    <input class="form-control" id="ingredient" placeholder="Enter ingredients here"  name="recipe[ingredients]" value="salt"/>
+                    <input class="form-control" id="ingredient" placeholder="Enter ingredients here"  name="recipe[ingredients]"  required/>
                     <button id="ingredient-button" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                 </div>
                 <li id="ingredient-group"></li>
@@ -32,19 +32,56 @@
             
 
             <div class="mb-3">
-                <label class="form-label" for="directions">directions</label>
+                <label class="form-label" for="directions">Directions</label>
                 <div class="form-group">
-                    <input type="text"  class="form-control disabled" placeholder="Enter all the steps below"
-                        autocomplete="off" readonly style="">
+                    <input type="text"  class="form-control disabled" placeholder="Enter atleast 2 steps..."
+                        autocomplete="off" readonly >
                   
                     <button id="addRow" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                 </div>
-                <div id="newRow"></div>
+                <div id="newRow">
+                    <div class="inputFormRow">
+                        <div class="form-group mt-3">
+                    
+                            <span class="input-group-text text-muted mr-2 h6 "
+                                style="height: 32px; margin-top:6.5px;margin-right:10px;padding:2px;border-radius:5px">Step:</span>
+                    
+                    
+                            <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step"
+                                autocomplete="off" style="height:35px; width:440px" required>
+                    
+                    
+                    
+                    
+                            <!-- <button class="text-white btn-danger removeRow " type="button"><i
+                                    class="fa-solid fa-minus text-dark"></i></button> -->
+                    
+                        </div>
+                        </div>
+                        <div class="inputFormRow">
+                            <div class="form-group mt-3">
+                        
+                                <span class="input-group-text text-muted mr-2 h6 "
+                                    style="height: 32px; margin-top:6.5px;margin-right:10px;padding:2px;border-radius:5px">Step:</span>
+                        
+                        
+                                <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step"
+                                    autocomplete="off" style="height:35px; width:440px" required>
+                        
+                        
+                        
+                        
+                                <!-- <button class="text-white btn-danger removeRow " type="button"><i
+                                        class="fa-solid fa-minus text-dark"></i></button> -->
+                        
+                            </div>
+                        </div>
+                </div>
                 
             </div>
 
             <div class="mb-3 text-center">
-                <button type="submit" class="btn" style="background-color: orange; color: white;" >Add recipe</button>
+                <button  class="btn" style="background-color: orange; color: white;" >Add recipe</button>
             </div>
         </form>
       
@@ -62,7 +99,7 @@
     style="height: 32px; margin-top:6.5px;margin-right:10px;padding:2px;border-radius:5px">Step 1</span>
             
                
-               <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step" autocomplete="off" style="height:35px; width:440px" >
+               <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step" autocomplete="off" style="height:35px; width:440px" required >
                 
                 
              

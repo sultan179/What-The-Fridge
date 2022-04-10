@@ -42,7 +42,7 @@
     <div class="row text-white d-flex justify-content-center">
         <h1 class="text-center">Edit recipe</h1>
         <div class="col-6 ">
-            <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" novalidate class="validated-form" onsubmit="submitForm()">
+            <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" onsubmit="submitForm()">
                 <div class="mb-3">
                     <label class="form-label" for="name">title</label>
                     <input class="form-control" type="text" id="name" name="recipe[name]" value="<%=recipe.name %>" required>
@@ -62,30 +62,37 @@
                     <label class="form-label" for="ingredients">ingredients</label>
                     <div class="form-group">
                         <input class="form-control" id="ingredient" placeholder="Enter ingredients here"
-                            name="recipe[ingredients]" value="" />
+                            name="recipe[ingredients]" value="<%=recipe.ingredients%>" required/>
                         <button id="ingredient-button" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                     </div>
                     
-                    <li id="ingredient-group"></li>
+                    <li id="ingredient-group">
+                     
+                            <% for (let ingredient of recipe.ingredients.split(",")){%>
+                             
+                                
+                                <div id="ingredient-<%=ingredient%>" class="ingredient-tag">
+                                    <%=ingredient%>
+                                        <button type="button" class="ingredient-exit">
+                                            <i class="fa-solid fa-xmark text-white" aria-hidden="true"></i>
+                            
+                                        </button>
+                            
+                            
+                                        <script></script>
+                            
+                                </div>
+                            
+                            
+                            
+                            
+                            
+                                <% }%>
+
+
+                    </li>
                 </div>
-                <% for (let ingredient of recipe.ingredients.split(",")){%>
-                    <div id="ingredient-<%=ingredient%>" class="ingredient-tag">
-                        <%=ingredient%>
-                        <button  type="button" class="ingredient-exit">
-                            <i class="fa-solid fa-xmark text-white" aria-hidden="true"></i>
-
-                        </button>
-
-
-                    
-                    
-                    </div>
-                    
-
-           
-                
-                        
-                <% }%>
+            
                
 
 
@@ -99,7 +106,29 @@
 
                         <button id="addRow" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                     </div>
-                    <div id="newRow"></div>
+                    <div id="newRow">
+                        <% for (let direction of recipe.directions){%>
+                        <div class="inputFormRow">
+                            <div class="form-group mt-3">
+                        
+                                <span class="input-group-text text-muted mr-2 h6 "
+                                    style="height: 32px; margin-top:6.5px;margin-right:10px;padding:2px;border-radius:5px">Step </span>
+                        
+                        
+                                <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step"
+                                    autocomplete="off" style="height:35px; width:440px" value="<%=direction%> "required>
+                        
+                        
+                        
+                        
+                                <button class="text-white btn-danger removeRow " type="button"><i
+                                        class="fa-solid fa-minus text-dark" ></i></button>
+                        
+                            </div>
+                            </div>
+                            <% }%>
+
+                    </div>
 
                 </div>
 
