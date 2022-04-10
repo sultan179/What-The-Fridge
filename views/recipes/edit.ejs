@@ -42,7 +42,7 @@
     <div class="row text-white d-flex justify-content-center">
         <h1 class="text-center">Edit recipe</h1>
         <div class="col-6 ">
-            <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" novalidate class="validated-form" onsubmit="submitForm()">
+            <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" onsubmit="submitForm()">
                 <div class="mb-3">
                     <label class="form-label" for="name">title</label>
                     <input class="form-control" type="text" id="name" name="recipe[name]" value="<%=recipe.name %>" required>
@@ -62,7 +62,7 @@
                     <label class="form-label" for="ingredients">ingredients</label>
                     <div class="form-group">
                         <input class="form-control" id="ingredient" placeholder="Enter ingredients here"
-                            name="recipe[ingredients]" value="" />
+                            name="recipe[ingredients]" value="<%=recipe.ingredients%>" required/>
                         <button id="ingredient-button" type="button"><i class="fa-solid fa-plus text-dark"></i></button>
                     </div>
                     
@@ -116,13 +116,13 @@
                         
                         
                                 <input type="text" name="recipe[directions]" class="form-control m-input" placeholder="Enter step"
-                                    autocomplete="off" style="height:35px; width:440px" value="<%=direction%>">
+                                    autocomplete="off" style="height:35px; width:440px" value="<%=direction%> "required>
                         
                         
                         
                         
                                 <button class="text-white btn-danger removeRow " type="button"><i
-                                        class="fa-solid fa-minus text-dark"></i></button>
+                                        class="fa-solid fa-minus text-dark" ></i></button>
                         
                             </div>
                             </div>

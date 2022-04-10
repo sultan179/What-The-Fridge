@@ -1,20 +1,16 @@
-const ingredientList = [];
+var ingredientList = [];
 
 
-// window.onload = function(e){ 
+if (document.getElementById("ingredient").value!=""){
+  ingredient_val=document.getElementById("ingredient").value
+  
+  ingredient_val_list=ingredient_val.split(",")
+  ingredientList=ingredient_val_list.slice()
 
-// if (document.querySelectorAll("ingredient-tag")==='undefined'){
-//   ingredientList = [];
 
-// }
-// else{
-//   console.log("7",document.getElementsByClassName("ingredient-tag").value)
-//   const rec_ingredients=document.querySelectorAll("ingredient-tag").value
-//   ingredientList.push(...rec_ingredients)
-//   console.log("9",ingredientList)
+}
 
-// }
-// }
+
 
 $("#ingredient-button").on("click", function (e) {
   e.preventDefault();
@@ -63,7 +59,7 @@ function ingred(){
     tag.appendChild(button);
 
     document.getElementById("ingredient-group").appendChild(tag);
-    document.getElementById("ingredient").value=""
+    // document.getElementById("ingredient").value=""
    
 
   } else if (ingredientList.includes(ingredient)) {
@@ -87,12 +83,10 @@ $(".home-button").on("click", function (e) {
 
 
 function submitForm(){
-  validate()
-   
 
   
-  
    document.getElementById("ingredient").value=ingredientList.toString();
+  
 
 
    
@@ -102,38 +96,19 @@ $(".ingredient-exit").on("click", function (e) {
       e.preventDefault();
 
       /** Remove item from HTML */
-      const val=$(this).parent('div').nodeValue
-      console.log("val",val)
-      console.log("ingredients",ingredientList)
+      const val=$(this).parent('div').text()
+    
 
       /** Remove Item from Ingredient List */
-      var index = ingredientList.indexOf(val);
+      var index = ingredientList.indexOf(val.trim());
       if (index !== -1) {
         ingredientList.splice(index, 1);
       }
-      console.log("list",ingredientList)
+   
       $(this).parent('div').remove();
     })
 
 
-    function validate(){
-       if(document.getElementById("name").value===''){
-      alert("please enter a title")
-      return
-    }
-    if(document.getElementById("image").value===''){
-      alert("please upload an url for image")
-      return
-    }
-    if (ingredientList.length===0){
-      alert("please enter ingredients")
-      return
-    }
-     if(!document.getElementById("newRow").hasChildNodes()){
-      alert("please write steps")
-      return
-    }
-    }
 
 
   
