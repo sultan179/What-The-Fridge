@@ -1,12 +1,120 @@
 <% layout('layouts/boilerplate')%>
-<div class="container">
-    <h1>Profile Page for <%= user.username %></h1>
+<link rel="stylesheet" href="../../styles/profile.css" />
+<link rel="stylesheet" type="text/css" href="/styles/starability.css"/>
+<div class="recipe-container h-100">
+    
+    
+    <div class="row grid-row" style="width: 100%">
+      <div class="col-md-4" id="body-picture">
+        <div class="row">
+        <div id="profile" class="col-4 card sticky-top">
+            <img  id ="profile-pic" class="card-img-top" src="../../img/profile-pic.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title"><%= user.username %></h4>
+              <h5 class = "edit"> Edit Profile</h5>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-8" id="body-description">
+        
+            <div class="row">
+                <h1>Own Recipe</h1>
+                <hr />
+                <% for(let recipe of user.ownRecipes) {%> 
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="card rounded-10">
+                            <img class="card-img-top" id = "recipe-img" alt="" src="<%=recipe.image%>" >
+                            <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
+                            
+                            
+                                <h5 class="card-title h5  " id = "recipe_title"> <%= recipe.name %> <span ></span></h5>
+                                
+                                
+                                  
+                                        
+                                <p class="starability-result" data-rating="<%= recipe.averageRating %>"></p>
+                              
+                                        
+                                        
+    
+                            </div>
+                            <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0">
+                                
+                            
+                            
+                            
+                            
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary" id ="cook_me">Cook me</a>
+                            
+                            
+                            
+                            </div>
+                            <!-- <div class="card-body">
+                                <h5 class="card-title"><%= recipe.name %> </h5>
+                                <p class="card-text"><%= recipe.descriptions %> </p>
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+                            </div> -->
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+            <div class="row">
+                <h1>Saved Recipe</h1>
+                <hr />
+                <% for(let recipe of user.savedRecipes) {%> 
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="card rounded-10">
+                            <img class="card-img-top"  id = "recipe-img" alt="" src="<%=recipe.image%>">
+                            <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
+                            
+                            
+                                <h5 class="card-title h5  " id = "recipe_title"> <%= recipe.name %> <span></span></h5>
+                                
+                                
+                                  
+                                        
+                                <p class="starability-result" data-rating="<%= recipe.averageRating %>"></p>
+                              
+                                        
+                                        
+    
+                            </div>
+                            <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0">
+                            
+                            
+                            
+                            
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary" id ="cook_me">Cook me</a>
+                            
+                            
+                            
+                            </div>
+                            <!-- <div class="card-body">
+                                <h5 class="card-title"><%= recipe.name %> </h5>
+                                <p class="card-text"><%= recipe.descriptions %> </p>
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+                            </div> -->
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- <h1>Profile Page for <%= user.username %></h1>
     <div class="row">
         <h1>Own Recipe</h1>
     <%console.log("This is the user's OWN recipe" + user.ownRecipes) %> 
     <% for(let recipe of user.ownRecipes) {%> 
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card rounded-10" style="width: 18rem;">
                 <img class="card-img-top" alt="" src="<%=recipe.image%>">
                 <div class="card-body">
                     <h5 class="card-title"><%= recipe.name %> </h5>
@@ -31,5 +139,4 @@
                 </div>
             </div>
         </div>
-    <% } %> 
-</div>
+    <% } %>  -->

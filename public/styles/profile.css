@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&display=swap");
+
+main.container{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+}
+body {
+    position: relative;
+  
+    background: url(../img/bg-result.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .recipe-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100;
+  }
+  #body-picture {
+    /* max-height: 300px; */
+    background: url(../img/bg-profile.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: local;
+    z-index: 51;
+  }
+  /* #body-description {
+    /* background: url(../img/bg-result.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center center; 
+  } */
+  
+  
+
+  .card{
+      margin: 2%;
+  }
+  .card-title{
+    color: #FDFDFD;
+  }
+
+  h1{
+    font-family: "Satisfy", cursive;
+  }
+
+  hr {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    opacity: 1;
+  }
+
+  #cook_me{
+    margin-top : 1rem;
+    margin-bottom: 1rem;
+    border-color: #F49338;
+    color: black;
+    font-weight: bold;
+  }
+
+  #cook_me:hover{
+    border-color: #F49338;
+    background-color: #F49338;
+  }
+
+
+
+  #recipe-img{
+
+    height: 250px;
+    object-fit: cover;
+
+  }
+
+  .btn{
+    background-color: #F49338;
+  }
+
+  h1{
+    padding-top: 1rem;
+    color: #FDFDFD;
+  }
+
+  
+
+  #profile{
+
+    position: relative;
+    color: #FDFDFD;
+    background: #362c2c9c;
+    background-blend-mode: hard-light;
+    border: 3px solid #FDFDFD;
+    box-sizing: border-box;
+    border-radius: 50px;
+    max-width: none;
+    z-index: 50;
+    width: 80%;
+    margin: auto;
+  }
+
+  #profile-pic {
+    border-radius: 50%;
+    width: 50%;
+    align-self: center;
+    margin: 10px;
+    /* mix-blend-mode: normal; */
+  }
+
+  .edit{
+      color: #F49338;
+      align-self: center;
+      text-align: center;
+      opacity: 1;
+      /* mix-blend-mode: normal; */
+  }
+
+  .card-title{
+    align-self: center;
+    text-align: center;
+    opacity: 1;
+
+    /* mix-blend-mode: normal; */
+  }
+  
+  #recipe_title{
+      align-self: left;
+      text-align: left;
+  }
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    #body-picture {
+      max-height: none;
+      background: url(../img/bg-profile.jpeg);
+      background-size: auto 100%;
+      background-position: center left;
+      background-attachment: fixed;
+
+    }
+
+    #profile {
+        position: fixed;
+        left: 1.8%;
+        top: 8rem;
+        background: #362c2c9c;
+        background-blend-mode: hard-light;
+        border: 3px solid #FDFDFD;
+        box-sizing: border-box;
+        border-radius: 50px;
+        max-width: 30%;
+        margin: 0;
+        
+      }
+
+    #body-description {
+        min-height: 100vh;
+    } 
+
+    
+  }
