@@ -45,10 +45,8 @@ router.get('/new', isLoggedIn, (req, res) => {
 router.post('/', isLoggedIn,catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
     recipe.author = req.user._id;
-    req.user.ownRecipes.push(recipe);
+    req.user.ownRecipes.push(recipe)
     console.log("directions",recipe.directions)
-    
-    // req.user.recipes.push(recipe);
     await recipe.save();
     await req.user.save();
     req.flash('success', 'Sucessfully made recipe');
