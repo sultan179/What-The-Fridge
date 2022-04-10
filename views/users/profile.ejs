@@ -1,35 +1,37 @@
 <% layout('layouts/boilerplate')%>
 <div class="container">
-    <h1>Profile Page for <%= user.username %></h1>
-    <div class="row">
-        <h1>Own Recipe</h1>
-    <%console.log("This is the user's OWN recipe" + user.ownRecipes) %> 
-    <% for(let recipe of user.ownRecipes) {%> 
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" alt="" src="<%=recipe.image%>">
-                <div class="card-body">
-                    <h5 class="card-title"><%= recipe.name %> </h5>
-                    <p class="card-text"><%= recipe.descriptions %> </p>
-                    <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
-                </div>
-            </div>
-        </div>
-    <% } %> 
-    </div>
+  <h1>Profile Page for <%= user.username %></h1>
+  <a href="/signin" style="color: orange">Edit Profile</a>
 
-    <h1>Saved Recipe</h1>
-    <%console.log("This is the user's SAVED recipe" + user.savedRecipes) %> 
-    <% for(let recipe of user.savedRecipes) {%> 
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" alt="" src="<%=recipe.image%>">
-                <div class="card-body">
-                    <h5 class="card-title"><%= recipe.name %> </h5>
-                    <p class="card-text"><%= recipe.descriptions %> </p>
-                    <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
-                </div>
-            </div>
+  <div class="row">
+    <h1>Own Recipe</h1>
+    <%console.log("This is the user's OWN recipe" + user.ownRecipes) %> <%
+    for(let recipe of user.ownRecipes) {%>
+    <div class="col-4">
+      <div class="card" style="width: 18rem">
+        <img class="card-img-top" alt="" src="<%=recipe.image%>" />
+        <div class="card-body">
+          <h5 class="card-title"><%= recipe.name %></h5>
+          <p class="card-text"><%= recipe.descriptions %></p>
+          <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
         </div>
-    <% } %> 
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <h1>Saved Recipe</h1>
+  <%console.log("This is the user's SAVED recipe" + user.savedRecipes) %> <%
+  for(let recipe of user.savedRecipes) {%>
+  <div class="col-4">
+    <div class="card" style="width: 18rem">
+      <img class="card-img-top" alt="" src="<%=recipe.image%>" />
+      <div class="card-body">
+        <h5 class="card-title"><%= recipe.name %></h5>
+        <p class="card-text"><%= recipe.descriptions %></p>
+        <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+      </div>
+    </div>
+  </div>
+  <% } %>
 </div>

@@ -1,11 +1,28 @@
+var ingredientList = [];
 
 
-const ingredientList = [];
+if (document.getElementById("ingredient").value!=""){
+  ingredient_val=document.getElementById("ingredient").value
+  
+  ingredient_val_list=ingredient_val.split(",")
+  ingredientList=ingredient_val_list.slice()
+
+
+}
+
+
 
 $("#ingredient-button").on("click", function (e) {
   e.preventDefault();
+  ingred()
 
-  /** Get the input value */
+
+  
+  
+});
+
+function ingred(){
+    /** Get the input value */
   const ingredient = document.getElementById("ingredient").value;
 
   if (ingredient != "" && !ingredientList.includes(ingredient)) {
@@ -42,17 +59,18 @@ $("#ingredient-button").on("click", function (e) {
     tag.appendChild(button);
 
     document.getElementById("ingredient-group").appendChild(tag);
-    document.getElementById("ingredient").value=""
+    // document.getElementById("ingredient").value=""
    
 
   } else if (ingredientList.includes(ingredient)) {
     alert("Please try a different ingredient!");
   }
-  
-});
+}
+
+
 
 $(".home-button").on("click", function (e) {
-  
+  console.log("63",ingredientList)
   if (ingredientList.length!=0){
    var searchParams = new URLSearchParams(window.location.search)
     searchParams.set("ingredients", ingredientList.toString());
@@ -65,13 +83,32 @@ $(".home-button").on("click", function (e) {
 
 
 function submitForm(){
+
   
    document.getElementById("ingredient").value=ingredientList.toString();
+  
 
 
    
   
 }
+$(".ingredient-exit").on("click", function (e) {
+      e.preventDefault();
+
+      /** Remove item from HTML */
+      const val=$(this).parent('div').text()
+    
+
+      /** Remove Item from Ingredient List */
+      var index = ingredientList.indexOf(val.trim());
+      if (index !== -1) {
+        ingredientList.splice(index, 1);
+      }
+   
+      $(this).parent('div').remove();
+    })
+
+
 
 
   

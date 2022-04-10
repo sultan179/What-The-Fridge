@@ -42,7 +42,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 });
 
 //Adds New Recipe
-router.post('/', isLoggedIn,catchAsync(async(req, res, next) =>{
+router.post('/', isLoggedIn,validateRecipe,catchAsync(async(req, res, next) =>{
     const recipe = new Recipe(req.body.recipe);
     recipe.author = req.user._id;
     req.user.ownRecipes.push(recipe)
