@@ -24,6 +24,7 @@
                 data-rating="<%= recipe.averageRating %>"
               ></p>
               <div class="d-flex flex-row mt-2 align-items-center">
+                <% if(currentUser && recipe.author.equals(currentUser._id)) {%>
                 <div class="col-6 text-center align-items-center">
                     <button
                     type="button"
@@ -45,6 +46,7 @@
                   <i class="fa-regular fa-heart" style="font-size: 22px; margin-bottom: auto" id="heart"></i>
                 </button>
               </form>
+              <% } %>
               </div>
             </div>
           </div>
@@ -55,7 +57,7 @@
       <div class="title">
         <h3><%= recipe.name%></h3>
         <hr />
-
+        
         <div class="row align-items-center">
           <div class="col-8">
             <div class="mb-2">Made By: <%= recipe.author.username %></div>
@@ -64,6 +66,7 @@
               data-rating="<%= recipe.averageRating %>"
             ></p>
           </div>
+          <% if(currentUser && recipe.author.equals(currentUser._id)) {%>
           <button
             type="button"
             class="btn btn-primary col-2"
@@ -83,43 +86,38 @@
               <i class="fa-regular fa-heart" id="heart"></i>
             </button>
           </form>
+          <% } %>
         </div>
+
       </div>
 
       <% if(currentUser && recipe.author.equals(currentUser._id)) {%>
       <div>
         <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-          <button>Delete Recipe</button>
+          <button class="btn btn-danger mb-2">Delete Recipe</button>
         </form>
-        <a href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
+        <a class="btn text-light" style="background-color:orange" href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
       </div>
       <% } %>
 
-      <div style="margin-top: 0.5rem">
-        Chicken Tacos are a classic meal that tastes great
-      </div>
+      
 
       <div class="group">
         <h3>Ingredients</h3>
         <hr />
         <ul style="column-count: 2">
-          <li>Tortillas</li>
-          <li>Ground Beef</li>
-          <li>Cheese</li>
-          <li>Tomatoes</li>
-          <li>Lettuce</li>
-          <li>Sour</li>
+          <% for (let ingredient of recipe.ingredients.split(",")){%>
+          <li> <%= ingredient %> </li>
+          <% } %>
         </ul>
       </div>
       <div class="group">
-        <h3>Instructions</h3>
+        <h3>Directions</h3>
         <hr />
         <ol>
-          <li>Brown Ground Beef</li>
-          <li>Added Spices to Beef</li>
-          <li>Grate Cheese</li>
-          <li>Slice Lettuce and Tomato</li>
-          <li>Assmeble on Tortilla</li>
+          <% for (let direction of recipe.directions){%>
+          <li> <%= direction %> </li>
+          <% } %>
         </ol>
       </div>
       <div class="group">
