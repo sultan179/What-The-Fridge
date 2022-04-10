@@ -18,13 +18,14 @@ router.get('/signup', (req, res) =>{
 
 router.post('/signup', catchAsync(async(req, res, next) => {
     try{
-        const {username, password, confirmPassword} = req.body;
+        const {username, password, confirmPassword, profilePic} = req.body;
+        console.log(profilePic);
         if(password !== confirmPassword){
             req.flash('error', 'Passowrd does not match!');
             return res.redirect('signup');
         }
         else{
-            const user = new User({username});
+            const user = new User({username, profilePic});
             const registeredUser = await User.register(user, password);
             req.login(registeredUser, err => {
                 if(err) return next(err);

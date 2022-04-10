@@ -8,7 +8,7 @@
       <div class="col-md-4" id="body-picture">
         <div class="row">
         <div id="profile" class="col-4 card sticky-top">
-            <img  id ="profile-pic" class="card-img-top" src="../../img/profile-pic.jpg" alt="Card image cap">
+            <img  id ="profile-pic" class="card-img-top" src=<%= user.profilePic || "/img/profile.png" %> alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title"><%= user.username %></h4>
               <h5 class = "edit"> Edit Profile</h5>
@@ -111,7 +111,6 @@
     <!-- <h1>Profile Page for <%= user.username %></h1>
     <div class="row">
         <h1>Own Recipe</h1>
-    <%console.log("This is the user's OWN recipe" + user.ownRecipes) %> 
     <% for(let recipe of user.ownRecipes) {%> 
         <div class="col-12 col-md-6 col-lg-4">
             <div class="card rounded-10" style="width: 18rem;">
@@ -127,7 +126,6 @@
     </div>
 
     <h1>Saved Recipe</h1>
-    <%console.log("This is the user's SAVED recipe" + user.savedRecipes) %> 
     <% for(let recipe of user.savedRecipes) {%> 
         <div class="col-4">
             <div class="card" style="width: 18rem;">
