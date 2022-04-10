@@ -1,74 +1,52 @@
-<% layout('layouts/boilerplate') %> 
+<% layout('layouts/boilerplate') %>
 <link rel="stylesheet" type="text/css" href="/styles/home.css" />
+<link rel="stylesheet" type="text/css" href="/styles/starability.css" />
 <link rel="stylesheet" href="../../styles/result.css" />
 <div class="container-fluid">
+  <div class="search-container">
+    <p class="mt-2 h5" style="font-family: 'Courier New', Courier, monospace">
+      You can make <%= recipes.length %> recipes with your <%=
+      ingredients.split(",").length%> ingredients
+    </p>
+  </div>
 
+  <div class="container" style="margin-top: 1rem">
+    <div class="row g-3">
+      <% for (let recipe of recipes){%>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card rounded-10">
+          <img src="<%=recipe.image%>" alt="recipe1" class="card-img-top" />
 
+          <div
+            class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1"
+          >
+            <h5 class="card-title h6"><%= recipe.name %></h5>
 
-    <div class="search-container">
-       
-        <p class="mt-2 h5 " style="font-family: 'Courier New', Courier, monospace;">You can make <%= recipes.length %>  recipes with your <%= ingredients.split(",").length%>
-            ingredients</p>
+            <div class="stars">
+              <p
+                class="starability-result"
+                data-rating="<%= recipe.averageRating %>"
+              ></p>
+            </div>
+          </div>
+          <div
+            class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0"
+          >
+            <h8 class="card-title h6 text-muted"
+              >Matched <%=ingredients.split(",").length %> out of <%=
+              recipe.ingredients.split(",").length %> ingredients</h8
+            >
+
+            <a
+              class="btn cook-button justify-content-between"
+              href="/recipes/<%=recipe._id%>"
+              >Cook Me</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <% }%>
     </div>
-
-
-    <div class="container" style="margin-top: 1rem;">
-        <div class="row g-3">
-            
-
-<% for (let recipe of recipes){%>
-                <div class="col-12 col-md-6 col-lg-4">
-
-           
-                <div class="card rounded-10">
-                    <img src="<%=recipe.image%>"alt="recipe1" class="card-img-top">
-
-
-                    <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
-
-
-                        <h5 class="card-title h6  "><%= recipe.name %> <span style="margin-left:1rem;"><i
-                                    class="fa-regular fa-heart text-danger"></i></span></h5>
-
-
-
-
-                        <div class="stars">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning text-white"></i>
-
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0">
-
-
-                        <h8 class="card-title h6 text-muted ">Matched <%=ingredients.split(",").length %> out of <%= recipe.ingredients.split(",").length %> ingredients</h8>
-
-
-
-                        <a class="btn cook-button justify-content-between" href="/recipes/<%=recipe._id%>">Cook Me</a>
-                        
-                
-                    </div>
-
-
-
-
-
-
-                </div>
-                </div>
-
-
-          
-            <% }%>
-            </div>
-            </div>
-            </div>
+  </div>
+</div>
