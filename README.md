@@ -29,7 +29,12 @@ We are creating a Web App called "What the Fridge!" for University of Calgary st
 
 ## How To Use
 
-- on the
+In the route directory of this folder type:
+
+1. "npm i -y" - to install all neccessary packages for this project
+2. "nodemon start" or "node app.js" - to start the server for this project
+3. Open the browser prefferably Google Chrome and go to "localhost:3000".
+4. Enjoy :)
 
 #### Installation
 
