@@ -46,6 +46,34 @@ body {
   .card{
       margin: 2%;
   }
+  .card-title{
+    color: #FDFDFD;
+  }
+
+  h1{
+    font-family: "Satisfy", cursive;
+  }
+
+  hr {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    opacity: 1;
+  }
+
+  #cook_me{
+    margin-top : 1rem;
+    margin-bottom: 1rem;
+    border-color: #F49338;
+    color: black;
+    font-weight: bold;
+  }
+
+  #cook_me:hover{
+    border-color: #F49338;
+    background-color: #F49338;
+  }
+
+
 
   #recipe-img{
 
@@ -59,6 +87,7 @@ body {
   }
 
   h1{
+    padding-top: 1rem;
     color: #FDFDFD;
   }
 
@@ -75,6 +104,8 @@ body {
     border-radius: 50px;
     max-width: none;
     z-index: 50;
+    width: 80%;
+    margin: auto;
   }
 
   #profile-pic {
@@ -99,6 +130,11 @@ body {
     opacity: 1;
 
     /* mix-blend-mode: normal; */
+  }
+  
+  #recipe_title{
+      align-self: left;
+      text-align: left;
   }
 
   /* Small devices (tablets, 768px and up) */

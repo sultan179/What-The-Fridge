@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="../../styles/profile.css" />
+<link rel="stylesheet" type="text/css" href="/styles/starability.css"/>
 <div class="recipe-container h-100">
     
     
@@ -22,26 +23,20 @@
         
             <div class="row">
                 <h1>Own Recipe</h1>
+                <hr />
                 <% for(let recipe of user.ownRecipes) {%> 
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-6">
                         <div class="card rounded-10">
                             <img class="card-img-top" id = "recipe-img" alt="" src="<%=recipe.image%>" >
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
                             
                             
-                                <h5 class="card-title h5  "> <%= recipe.name %> <span style="margin-left:1rem;"><i class="fa-regular fa-heart text-danger"></i></span></h5>
+                                <h5 class="card-title h5  " id = "recipe_title"> <%= recipe.name %> <span ></span></h5>
                                 
                                 
                                   
                                         
-                                <div class="stars">
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning text-white"></i>
-    
-                                </div>
+                                <p class="starability-result" data-rating="<%= recipe.averageRating %>"></p>
                               
                                         
                                         
@@ -49,13 +44,11 @@
                             </div>
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0">
                                 
-                                
-                                <h8 class="card-title h6 text-muted "> <%= recipe.descriptions %> </h8>
                             
                             
                             
                             
-                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary" id ="cook_me">Cook me</a>
                             
                             
                             
@@ -71,40 +64,31 @@
             </div>
             <div class="row">
                 <h1>Saved Recipe</h1>
+                <hr />
                 <% for(let recipe of user.savedRecipes) {%> 
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-6">
                         <div class="card rounded-10">
                             <img class="card-img-top"  id = "recipe-img" alt="" src="<%=recipe.image%>">
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-1">
                             
                             
-                                <h5 class="card-title h5  "> <%= recipe.name %> <span style="margin-left:1rem;"><i class="fa-regular fa-heart text-danger"></i></span></h5>
+                                <h5 class="card-title h5  " id = "recipe_title"> <%= recipe.name %> <span></span></h5>
                                 
                                 
                                   
                                         
-                                <div class="stars">
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <i class="fa-solid fa-star text-warning text-white"></i>
-    
-                                </div>
+                                <p class="starability-result" data-rating="<%= recipe.averageRating %>"></p>
                               
                                         
                                         
     
                             </div>
                             <div class="card-body bg-dark d-flex justify-content-between pl-1 pb-0 pt-0">
-                                
-                                
-                                <h8 class="card-title h6 text-muted "> <%= recipe.descriptions %> </h8>
                             
                             
                             
                             
-                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">Cook me</a>
+                                <a href="/recipes/<%=recipe._id%>" class="btn btn-primary" id ="cook_me">Cook me</a>
                             
                             
                             
