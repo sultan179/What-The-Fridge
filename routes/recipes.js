@@ -144,36 +144,7 @@ router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req,res)=>{
 }));
 
 
-// router.get('/:id/editProfile',isLoggedIn, catchAsync(async(req, res) => {
-  
-//      const user = await User.findById(req.user._id);
-//     res.render('users/editProfile', {user,title:'editProfile'});
-// }));
 
-// router.put('/:id', catchAsync(async(req, res) => {
-//     console.log(req.params)
-//       try{
-//         const {username, profilePic} = req.body;
-      
-      
-//             const user = await User.findByIdAndUpdate(req.params.id, {
-
-//                 username:username,
-//                 profilePic:profilePic
-//         } )
-
-//           res.render('users/profile', {user,title:'profile'});
-
-// }
-//     catch(e){
-//         req.flash('error', e.message);
-//         res.redirect('editProfile');
-//     }
-
-  
-         
-  
-// }));
 
 
 
