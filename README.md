@@ -1,8 +1,10 @@
 # What The Fridge!
 
+Github link: https://github.com/sultan179/What-The-Fridge
+
 ![Project Image](./public/img/image.png);
 
----
+--- 
 
 ### Table of Contents
 
