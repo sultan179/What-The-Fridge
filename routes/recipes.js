@@ -70,7 +70,7 @@ router.get('/:id', catchAsync(async(req, res) => {
 }));
 
 //Route for sending rating to recipe
-router.post('/:id', catchAsync(async(req, res) => {
+router.post('/:id', isLoggedIn ,catchAsync(async(req, res) => {
     const {rating} = req.body.recipe;
     // console.log(rating);
     const recipe = await Recipe.findById(req.params.id).populate({
@@ -92,7 +92,7 @@ router.post('/:id', catchAsync(async(req, res) => {
 }));
 
 //Route for saving Recipe
-router.post('/:id/saved', catchAsync(async(req, res) => {
+router.post('/:id/saved', isLoggedIn ,catchAsync(async(req, res) => {
     const recipe = await Recipe.findById(req.params.id).populate({
         path: 'comments',
         populate: {
@@ -105,7 +105,7 @@ router.post('/:id/saved', catchAsync(async(req, res) => {
 }));
 
 //Route for unsaving the Recipe
-router.post('/:id/unsave', catchAsync(async(req, res) => {
+router.post('/:id/unsave', isLoggedIn ,catchAsync(async(req, res) => {
     const recipe = await Recipe.findById(req.params.id).populate({
         path: 'comments',
         populate: {
