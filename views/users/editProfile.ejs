@@ -4,8 +4,9 @@
 <div class="container-fluid">
     <div class="signup-container">
       <div class="login-items">
-        <h1 class="login-title">Sign Up</h1>
-        <form action="/signup" method="POST">
+        <h1 class="login-title">Edit Profile</h1>
+        <form  action="/<%=user._id%>?_method=PUT"
+      method="POST">
           
             <div class="camera-icon">
                 <img
@@ -17,31 +18,17 @@
               </div>
             <div class="mb-3">
                 <label class="form-label" for="username">Username</label>
-                <input class="form-control" type="text" id="username" name="username" required>
+                <input class="form-control" type="text" id="username" name="username" value="<%=user.username%>"
+                required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
+         
             <div class="mb-3">
-                <label class="form-label" for="password">Password</label>
-                <input class="form-control" type="password" id="password" name="password" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                <button class="btn btn-success" id="login-button">Update</button>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="confirmPassword">Confirm Password</label>
-                <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-success" id="login-button">Sign Up</button>
-            </div>
-            <div class="sign-up mt-4" style="font-size: 22px">
-                Already have an account? <a href="/signin" style="color: orange">Sign In</a>
-            </div>
+          
         </div>
     </div>
     <i

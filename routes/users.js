@@ -16,6 +16,10 @@ router.get('/signup', (req, res) =>{
     res.render('users/signup',{title:"signup"}); 
 });
 
+router.get('/signup', (req, res) =>{
+    res.render('users/signup',{title:"signup"}); 
+});
+
 router.post('/signup', catchAsync(async(req, res, next) => {
     try{
         const {username, password, confirmPassword, profilePic} = req.body;
@@ -64,4 +68,11 @@ router.get('/user', catchAsync(async(req, res) => {
      const user = await User.findById(req.user._id).populate('ownRecipes').populate('savedRecipes');
     res.render('users/profile', {user,title:'profile'});
 }));
+
+
+
 module.exports = router;
+
+
+//reference
+//https://stackoverflow.com/questions/29238060/how-to-use-same-the-form-for-post-and-put-requests-using-ejs
