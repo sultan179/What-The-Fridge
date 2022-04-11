@@ -35,7 +35,6 @@ We are creating a Web App called "What the Fridge!" for University of Calgary st
 <img  alt="Node.js" width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" style="padding-right:10px;"/>
 <img  alt="Express.js" width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" style="padding-right:10px;"/>
 <img  alt="MongoDB" width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg" style="padding-right:10px;"/>
-          
 
 [Back To The Top](#read-me-template)
 
@@ -59,9 +58,30 @@ In the route directory of this folder, type:
 ---
 
 ## References
+
 [Back To The Top](#read-me-template)
 
 ---
+
+## Example Searchs and Users
+
+Some pre-existing Users you can use are:
+
+- Username: will
+- Password: will
+
+- Username: matt
+- Password: 123
+
+Some example ingredient search to get the best results are:
+
+- Cheese, Bread
+- Cheese, Beef
+- Chicken
+- Egg
+- Beef
+- Salt
+- Cheese
 
 ## License
 
@@ -99,4 +119,3 @@ SOFTWARE.
 - Will Kerr
 
 [Back To The Top](#read-me-template)
-
