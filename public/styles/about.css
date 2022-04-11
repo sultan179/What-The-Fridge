@@ -7,6 +7,9 @@
   box-sizing: border-box;
   color: white;
 }
+:root {
+  color-scheme: dark;
+}
 body {
   position: relative;
 

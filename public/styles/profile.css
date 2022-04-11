@@ -1,170 +1,185 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,100&display=swap");
 
-main.container{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: none;
+main.container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
 }
+
+body::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #333; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #666; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid #333; /* creates padding around scroll thumb */
+}
+
 body {
-    position: relative;
-  
-    background: url(../img/bg-result.jpg);
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center center;
-    min-width: 100%;
-    min-height: 100%;
-  }
-  .recipe-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100;
-  }
-  #body-picture {
-    /* max-height: 300px; */
-    background: url(../img/bg-profile.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: local;
-    z-index: 51;
-  }
-  /* #body-description {
+  position: relative;
+
+  background: url(../img/bg-result.jpg);
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center center;
+  min-width: 100%;
+  min-height: 100%;
+}
+.recipe-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100;
+}
+#body-picture {
+  /* max-height: 300px; */
+  background: url(../img/bg-profile.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: local;
+  z-index: 51;
+}
+/* #body-description {
     /* background: url(../img/bg-result.jpg);
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center center; 
   } */
-  
-  
 
-  .card{
-      margin: 2%;
-  }
-  .card-title{
-    color: #FDFDFD;
-  }
+.card {
+  margin: 2%;
+}
+.card-title {
+  color: #fdfdfd;
+}
 
-  h1{
-    font-family: "Satisfy", cursive;
-  }
+h1 {
+  font-family: "Satisfy", cursive;
+}
 
-  hr {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    opacity: 1;
-  }
+hr {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  opacity: 1;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 4rem;
+  width: 90% !important;
+  padding: 0;
+}
 
-  #cook_me{
-    margin-top : 1rem;
-    margin-bottom: 1rem;
-    border-color: #F49338;
-    color: black;
-    font-weight: bold;
-  }
+#cook_me {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-color: #f49338;
+  color: black;
+  font-weight: bold;
+}
 
-  #cook_me:hover{
-    border-color: #F49338;
-    background-color: #F49338;
-  }
+#cook_me:hover {
+  border-color: #f49338;
+  background-color: #f49338;
+}
 
+#recipe-img {
+  height: 250px;
+  object-fit: cover;
+}
 
+.btn {
+  background-color: #f49338;
+}
 
-  #recipe-img{
+h1 {
+  padding-top: 1rem;
+  color: #fdfdfd;
+}
 
-    height: 250px;
-    object-fit: cover;
+#profile {
+  position: relative;
+  color: #fdfdfd;
+  background: #362c2c9c;
+  background-blend-mode: hard-light;
+  border: 3px solid #fdfdfd;
+  box-sizing: border-box;
+  border-radius: 50px;
+  max-width: none;
+  z-index: 50;
+  width: 80%;
+  min-height: 300px;
+  margin: auto;
+}
 
-  }
+#profile-pic {
+  border-radius: 50%;
+  height: 30vw;
+  width: 30vw;
+  object-fit: cover;
+  align-self: center;
+  margin: 10px;
+  /* mix-blend-mode: normal; */
+}
 
-  .btn{
-    background-color: #F49338;
-  }
+.edit {
+  color: #f49338;
+  align-self: center;
+  text-align: center;
+  opacity: 1;
+  /* mix-blend-mode: normal; */
+}
 
-  h1{
-    padding-top: 1rem;
-    color: #FDFDFD;
-  }
+.card-title {
+  align-self: center;
+  text-align: center;
+  opacity: 1;
 
-  
+  /* mix-blend-mode: normal; */
+}
 
-  #profile{
+#recipe_title {
+  align-self: left;
+  text-align: left;
+}
 
-    position: relative;
-    color: #FDFDFD;
-    background: #362c2c9c;
-    background-blend-mode: hard-light;
-    border: 3px solid #FDFDFD;
-    box-sizing: border-box;
-    border-radius: 50px;
-    max-width: none;
-    z-index: 50;
-    width: 80%;
-    margin: auto;
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #body-picture {
+    max-height: none;
+    background: url(../img/bg-profile.jpeg);
+    background-size: auto 100%;
+    background-position: center left;
+    background-attachment: fixed;
   }
 
   #profile-pic {
-    border-radius: 50%;
-    width: 50%;
-    align-self: center;
-    margin: 10px;
-    /* mix-blend-mode: normal; */
+    height: 15vw;
+    width: 15vw;
   }
 
-  .edit{
-      color: #F49338;
-      align-self: center;
-      text-align: center;
-      opacity: 1;
-      /* mix-blend-mode: normal; */
+  #profile {
+    position: fixed;
+    left: 1.8%;
+    top: 8rem;
+    background: #362c2c9c;
+    background-blend-mode: hard-light;
+    border: 3px solid #fdfdfd;
+    box-sizing: border-box;
+    border-radius: 50px;
+    max-width: 30%;
+    margin: 0;
   }
 
-  .card-title{
-    align-self: center;
-    text-align: center;
-    opacity: 1;
-
-    /* mix-blend-mode: normal; */
+  #body-description {
+    min-height: 100vh;
   }
-  
-  #recipe_title{
-      align-self: left;
-      text-align: left;
-  }
-
-  /* Small devices (tablets, 768px and up) */
-  @media (min-width: 768px) {
-    #body-picture {
-      max-height: none;
-      background: url(../img/bg-profile.jpeg);
-      background-size: auto 100%;
-      background-position: center left;
-      background-attachment: fixed;
-
-    }
-
-    #profile {
-        position: fixed;
-        left: 1.8%;
-        top: 8rem;
-        background: #362c2c9c;
-        background-blend-mode: hard-light;
-        border: 3px solid #FDFDFD;
-        box-sizing: border-box;
-        border-radius: 50px;
-        max-width: 30%;
-        margin: 0;
-        
-      }
-
-    #body-description {
-        min-height: 100vh;
-    } 
-
-    
-  }
+}
