@@ -1,5 +1,14 @@
+The project structure: 
+https://www.youtube.com/watch?v=99sJapTzRnI&list=PLa5qVXTT08DXFgJhJrdvTJVoVn7azdTDQ&ab_channel=TechSchool_ColtSteele
+
+Starability:
+https://github.com/LunarLogic/starability
+
 Heart code:
 https://codepen.io/bojandevic/pen/mxKZqK 
 
 Markdown Read.Me
 https://www.youtube.com/watch?v=HUBNt18RFbo&ab_channel=TraversyMedia
+
+Signup image verification:
+https://thewebdev.info/2021/08/15/how-to-verify-that-an-url-is-an-image-url-with-javascript/
