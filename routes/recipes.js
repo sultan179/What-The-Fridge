@@ -143,4 +143,12 @@ router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req,res)=>{
     res.redirect('/recipes');
 }));
 
+
+
+
+
+
+
+
+
 module.exports = router;

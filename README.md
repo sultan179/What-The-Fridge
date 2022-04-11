@@ -63,6 +63,9 @@ In the route directory of this folder, type:
 
 The project structure: 
 https://www.youtube.com/watch?v=99sJapTzRnI&list=PLa5qVXTT08DXFgJhJrdvTJVoVn7azdTDQ&ab_channel=TechSchool_ColtSteele
+https://stackoverflow.com/questions/5999118/how-can-i-add-or-update-a-query-string-parameter
+https://stackoverflow.com/questions/29238060/how-to-use-same-the-form-for-post-and-put-requests-using-ejs
+https://getbootstrap.com/
 
 Starability:
 https://github.com/LunarLogic/starability
