@@ -131,9 +131,9 @@
       <% if(currentUser && recipe.author.equals(currentUser._id)) {%>
       <div>
         <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-          <button class="btn btn-danger mb-2">Delete Recipe</button>
+          <button style="width:125px;" class="btn btn-danger mb-2">Delete Recipe</button>
         </form>
-        <a class="btn text-light" style="background-color:orange" href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
+        <a class="btn text-light" style="width:125px;background-color:orange" href="/recipes/<%=recipe._id%>/edit">Edit recipe</a>
       </div>
       <% } %>
 
